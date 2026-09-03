@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "bundle": "list-create.octane",
+  "name": "list-create",
+  "framework": "octane",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:53.530Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "4312177831b04e10",
+      "fb_rgba8": "56f2f0e8"
+    },
+    "metrics": {
+      "hostops_total": 31,
+      "hostops_by_type": {
+        "loadFontAtlas": 3,
+        "loadStyles": 1,
+        "createNode": 6,
+        "setProp": 11,
+        "insertBefore": 6,
+        "setStyle": 3,
+        "setText": 1
+      },
+      "boundary_calls": 31,
+      "nodes_created": 6,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "create",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "28ede6fc94ab8f42",
+        "fb_rgba8": "cf6fe48e"
+      },
+      "metrics": {
+        "hostops_total": 21000,
+        "hostops_by_type": {
+          "createNode": 7000,
+          "setStyle": 4000,
+          "setText": 3000,
+          "insertBefore": 7000
+        },
+        "boundary_calls": 21000,
+        "nodes_created": 7000,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "clear",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "4312177831b04e10",
+        "fb_rgba8": "56f2f0e8"
+      },
+      "metrics": {
+        "hostops_total": 2000,
+        "hostops_by_type": {
+          "removeChild": 1000,
+          "destroyNode": 1000
+        },
+        "boundary_calls": 2000,
+        "nodes_created": 0,
+        "nodes_destroyed": 1000
+      }
+    },
+    {
+      "action": "create",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "28ede6fc94ab8f42",
+        "fb_rgba8": "cf6fe48e"
+      },
+      "metrics": {
+        "hostops_total": 21000,
+        "hostops_by_type": {
+          "createNode": 7000,
+          "setStyle": 4000,
+          "setText": 3000,
+          "insertBefore": 7000
+        },
+        "boundary_calls": 21000,
+        "nodes_created": 7000,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "clear",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "4312177831b04e10",
+        "fb_rgba8": "56f2f0e8"
+      },
+      "metrics": {
+        "hostops_total": 2000,
+        "hostops_by_type": {
+          "removeChild": 1000,
+          "destroyNode": 1000
+        },
+        "boundary_calls": 2000,
+        "nodes_created": 0,
+        "nodes_destroyed": 1000
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "soak-churn",
+  "family": "soak",
+  "track": "canonical",
+  "scale": 200,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["churn"],
+  "warmup": 0,
+  "max_settle": 1300,
+  "description": "长时间压力：run() 启动 onFrame 驱动的循环，每帧交替创建 200 行 keyed 列表 / 清空，600 帧后停止置完成标志（post 读它）。节点与 JS 对象持续生灭，shell 侧的 js_peak / arena 曲线随之而来"
+}

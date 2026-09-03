@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "bundle": "list-create.vue-vapor",
+  "name": "list-create",
+  "framework": "vue-vapor",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:53.349Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "4312177831b04e10",
+      "fb_rgba8": "56f2f0e8"
+    },
+    "metrics": {
+      "hostops_total": 34,
+      "hostops_by_type": {
+        "loadFontAtlas": 3,
+        "loadStyles": 1,
+        "createNode": 7,
+        "setProp": 11,
+        "insertBefore": 7,
+        "setText": 2,
+        "setStyle": 3
+      },
+      "boundary_calls": 34,
+      "nodes_created": 7,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "create",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "28ede6fc94ab8f42",
+        "fb_rgba8": "cf6fe48e"
+      },
+      "metrics": {
+        "hostops_total": 22000,
+        "hostops_by_type": {
+          "destroyNode": 1000,
+          "createNode": 7000,
+          "setText": 3000,
+          "insertBefore": 7000,
+          "setStyle": 4000
+        },
+        "boundary_calls": 22000,
+        "nodes_created": 7000,
+        "nodes_destroyed": 1000
+      }
+    },
+    {
+      "action": "clear",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "4312177831b04e10",
+        "fb_rgba8": "56f2f0e8"
+      },
+      "metrics": {
+        "hostops_total": 1000,
+        "hostops_by_type": {
+          "removeChild": 1000
+        },
+        "boundary_calls": 1000,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "create",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "28ede6fc94ab8f42",
+        "fb_rgba8": "cf6fe48e"
+      },
+      "metrics": {
+        "hostops_total": 22000,
+        "hostops_by_type": {
+          "destroyNode": 1000,
+          "createNode": 7000,
+          "setText": 3000,
+          "insertBefore": 7000,
+          "setStyle": 4000
+        },
+        "boundary_calls": 22000,
+        "nodes_created": 7000,
+        "nodes_destroyed": 1000
+      }
+    },
+    {
+      "action": "clear",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "4312177831b04e10",
+        "fb_rgba8": "56f2f0e8"
+      },
+      "metrics": {
+        "hostops_total": 1000,
+        "hostops_by_type": {
+          "removeChild": 1000
+        },
+        "boundary_calls": 1000,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    }
+  ]
+}

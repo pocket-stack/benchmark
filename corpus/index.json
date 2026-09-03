@@ -1,0 +1,152 @@
+[
+  {
+    "file": "wide-10.pkmt",
+    "family": "wide",
+    "scale": 10,
+    "frames": 3,
+    "record_words": 309,
+    "bytes": 1332,
+    "fnv1a64": "a5d4c7fc197b71cd",
+    "ops": {
+      "createNode": 10,
+      "insertBefore": 10,
+      "setProp": 30
+    }
+  },
+  {
+    "file": "wide-100.pkmt",
+    "family": "wide",
+    "scale": 100,
+    "frames": 3,
+    "record_words": 2919,
+    "bytes": 11772,
+    "fnv1a64": "433ee1722a808de8",
+    "ops": {
+      "createNode": 100,
+      "insertBefore": 100,
+      "setProp": 300
+    }
+  },
+  {
+    "file": "wide-1000.pkmt",
+    "family": "wide",
+    "scale": 1000,
+    "frames": 3,
+    "record_words": 29019,
+    "bytes": 116172,
+    "fnv1a64": "a5795669fe93eae6",
+    "ops": {
+      "createNode": 1000,
+      "insertBefore": 1000,
+      "setProp": 3000
+    }
+  },
+  {
+    "file": "deep-8.pkmt",
+    "family": "deep",
+    "scale": 8,
+    "frames": 3,
+    "record_words": 347,
+    "bytes": 1484,
+    "fnv1a64": "ec842aa969a63686",
+    "ops": {
+      "createNode": 8,
+      "insertBefore": 8,
+      "setProp": 40
+    }
+  },
+  {
+    "file": "deep-32.pkmt",
+    "family": "deep",
+    "scale": 32,
+    "frames": 3,
+    "record_words": 1331,
+    "bytes": 5420,
+    "fnv1a64": "ef63620734946bda",
+    "ops": {
+      "createNode": 32,
+      "insertBefore": 32,
+      "setProp": 160
+    }
+  },
+  {
+    "file": "deep-64.pkmt",
+    "family": "deep",
+    "scale": 64,
+    "frames": 3,
+    "record_words": 2643,
+    "bytes": 10668,
+    "fnv1a64": "646f76d762a9b373",
+    "ops": {
+      "createNode": 64,
+      "insertBefore": 64,
+      "setProp": 320
+    }
+  },
+  {
+    "file": "list-ops-100.pkmt",
+    "family": "list-ops",
+    "scale": 100,
+    "frames": 10,
+    "record_words": 13293,
+    "bytes": 53268,
+    "fnv1a64": "6455b8096b0aa410",
+    "ops": {
+      "createNode": 481,
+      "destroyNode": 120,
+      "insertBefore": 603,
+      "removeChild": 120,
+      "replaceText": 12,
+      "setProp": 722,
+      "setText": 360
+    }
+  },
+  {
+    "file": "list-ops-1000.pkmt",
+    "family": "list-ops",
+    "scale": 1000,
+    "frames": 10,
+    "record_words": 133266,
+    "bytes": 533160,
+    "fnv1a64": "b97dbd1690175fdd",
+    "ops": {
+      "createNode": 4801,
+      "destroyNode": 1200,
+      "insertBefore": 6003,
+      "removeChild": 1200,
+      "replaceText": 120,
+      "setProp": 7202,
+      "setText": 3600
+    }
+  },
+  {
+    "file": "animation-10.pkmt",
+    "family": "animation",
+    "scale": 10,
+    "frames": 61,
+    "record_words": 957,
+    "bytes": 3924,
+    "fnv1a64": "54beac001dd1ba94",
+    "ops": {
+      "animate": 10,
+      "createNode": 10,
+      "insertBefore": 10,
+      "setProp": 60
+    }
+  },
+  {
+    "file": "animation-100.pkmt",
+    "family": "animation",
+    "scale": 100,
+    "frames": 61,
+    "record_words": 6267,
+    "bytes": 25164,
+    "fnv1a64": "60d6273a7fc02565",
+    "ops": {
+      "animate": 100,
+      "createNode": 100,
+      "insertBefore": 100,
+      "setProp": 600
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "id": "animation",
+  "family": "animation",
+  "track": "canonical",
+  "scale": 24,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["start", "back"],
+  "warmup": 1,
+  "max_settle": 60,
+  "description": "24 个色条各一条 300ms 的 translateX 原生 tween：start 移到 96px，back 移回 0；settle 靠 hash 稳定（动画结束后两帧不变）"
+}

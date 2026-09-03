@@ -1,0 +1,12 @@
+{
+  "id": "reactive-fanout",
+  "family": "reactive",
+  "track": "canonical",
+  "scale": 100,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["set", "set-back"],
+  "warmup": 1,
+  "max_settle": 120,
+  "description": "一个 signal / ref / state 扇出到 100 个 Text（各显示 `${value}-${index}`）：set 改成 B，set-back 改回 A"
+}

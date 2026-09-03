@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "bundle": "reactive-fanin.octane",
+  "name": "reactive-fanin",
+  "framework": "octane",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:56.511Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "bccadd6faa161206",
+      "fb_rgba8": "871485f4"
+    },
+    "metrics": {
+      "hostops_total": 34,
+      "hostops_by_type": {
+        "loadFontAtlas": 3,
+        "loadStyles": 1,
+        "createNode": 7,
+        "setProp": 11,
+        "insertBefore": 7,
+        "setStyle": 3,
+        "setText": 2
+      },
+      "boundary_calls": 34,
+      "nodes_created": 7,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "set-one",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "71d5a851348f13c3",
+        "fb_rgba8": "18bd21df"
+      },
+      "metrics": {
+        "hostops_total": 1,
+        "hostops_by_type": {
+          "replaceText": 1
+        },
+        "boundary_calls": 1,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "set-all",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "5262bbca5a45b498",
+        "fb_rgba8": "24f2737b"
+      },
+      "metrics": {
+        "hostops_total": 1,
+        "hostops_by_type": {
+          "replaceText": 1
+        },
+        "boundary_calls": 1,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "set-back",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "bccadd6faa161206",
+        "fb_rgba8": "871485f4"
+      },
+      "metrics": {
+        "hostops_total": 1,
+        "hostops_by_type": {
+          "replaceText": 1
+        },
+        "boundary_calls": 1,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "set-one",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "71d5a851348f13c3",
+        "fb_rgba8": "18bd21df"
+      },
+      "metrics": {
+        "hostops_total": 1,
+        "hostops_by_type": {
+          "replaceText": 1
+        },
+        "boundary_calls": 1,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "set-all",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "5262bbca5a45b498",
+        "fb_rgba8": "24f2737b"
+      },
+      "metrics": {
+        "hostops_total": 1,
+        "hostops_by_type": {
+          "replaceText": 1
+        },
+        "boundary_calls": 1,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "set-back",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "bccadd6faa161206",
+        "fb_rgba8": "871485f4"
+      },
+      "metrics": {
+        "hostops_total": 1,
+        "hostops_by_type": {
+          "replaceText": 1
+        },
+        "boundary_calls": 1,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    }
+  ]
+}

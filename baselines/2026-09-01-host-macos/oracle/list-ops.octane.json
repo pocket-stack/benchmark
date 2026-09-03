@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "bundle": "list-ops.octane",
+  "name": "list-ops",
+  "framework": "octane",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:54.681Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "0dfb8d7e8faddf03",
+      "fb_rgba8": "d594c455"
+    },
+    "metrics": {
+      "hostops_total": 21031,
+      "hostops_by_type": {
+        "loadFontAtlas": 3,
+        "loadStyles": 1,
+        "createNode": 7006,
+        "setProp": 11,
+        "insertBefore": 7006,
+        "setStyle": 4003,
+        "setText": 3001
+      },
+      "boundary_calls": 21031,
+      "nodes_created": 7006,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "append",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455"
+      },
+      "metrics": {
+        "hostops_total": 23100,
+        "hostops_by_type": {
+          "createNode": 7700,
+          "setStyle": 4400,
+          "setText": 3300,
+          "insertBefore": 7700
+        },
+        "boundary_calls": 23100,
+        "nodes_created": 7700,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "insert-middle",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455"
+      },
+      "metrics": {
+        "hostops_total": 15900,
+        "hostops_by_type": {
+          "createNode": 4900,
+          "setStyle": 2800,
+          "setText": 2100,
+          "removeChild": 600,
+          "insertBefore": 4900,
+          "destroyNode": 600
+        },
+        "boundary_calls": 15900,
+        "nodes_created": 4900,
+        "nodes_destroyed": 600
+      }
+    },
+    {
+      "action": "update-every-10th",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "caf61f704d7b3f05",
+        "fb_rgba8": "5079b279"
+      },
+      "metrics": {
+        "hostops_total": 120,
+        "hostops_by_type": {
+          "replaceText": 120
+        },
+        "boundary_calls": 120,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "swap",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "61db7ae5f2b6fb94",
+        "fb_rgba8": "9c1b0980"
+      },
+      "metrics": {
+        "hostops_total": 46,
+        "hostops_by_type": {
+          "createNode": 14,
+          "setStyle": 8,
+          "setText": 6,
+          "removeChild": 2,
+          "insertBefore": 14,
+          "destroyNode": 2
+        },
+        "boundary_calls": 46,
+        "nodes_created": 14,
+        "nodes_destroyed": 2
+      }
+    },
+    {
+      "action": "reverse",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2aef9539cbdfc0c0",
+        "fb_rgba8": "f1344b7d"
+      },
+      "metrics": {
+        "hostops_total": 27600,
+        "hostops_by_type": {
+          "createNode": 8400,
+          "setStyle": 4800,
+          "setText": 3600,
+          "removeChild": 1200,
+          "insertBefore": 8400,
+          "destroyNode": 1200
+        },
+        "boundary_calls": 27600,
+        "nodes_created": 8400,
+        "nodes_destroyed": 1200
+      }
+    },
+    {
+      "action": "remove",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "848a642a67e117b1",
+        "fb_rgba8": "726597e0"
+      },
+      "metrics": {
+        "hostops_total": 23400,
+        "hostops_by_type": {
+          "createNode": 7000,
+          "setStyle": 4000,
+          "setText": 3000,
+          "removeChild": 1200,
+          "insertBefore": 7000,
+          "destroyNode": 1200
+        },
+        "boundary_calls": 23400,
+        "nodes_created": 7000,
+        "nodes_destroyed": 1200
+      }
+    },
+    {
+      "action": "clear",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2adbd5c8610f9ff3",
+        "fb_rgba8": "cd14be5e"
+      },
+      "metrics": {
+        "hostops_total": 2000,
+        "hostops_by_type": {
+          "removeChild": 1000,
+          "destroyNode": 1000
+        },
+        "boundary_calls": 2000,
+        "nodes_created": 0,
+        "nodes_destroyed": 1000
+      }
+    },
+    {
+      "action": "append",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455"
+      },
+      "metrics": {
+        "hostops_total": 23100,
+        "hostops_by_type": {
+          "createNode": 7700,
+          "setStyle": 4400,
+          "setText": 3300,
+          "insertBefore": 7700
+        },
+        "boundary_calls": 23100,
+        "nodes_created": 7700,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "insert-middle",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455"
+      },
+      "metrics": {
+        "hostops_total": 15900,
+        "hostops_by_type": {
+          "createNode": 4900,
+          "setStyle": 2800,
+          "setText": 2100,
+          "removeChild": 600,
+          "insertBefore": 4900,
+          "destroyNode": 600
+        },
+        "boundary_calls": 15900,
+        "nodes_created": 4900,
+        "nodes_destroyed": 600
+      }
+    },
+    {
+      "action": "update-every-10th",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "caf61f704d7b3f05",
+        "fb_rgba8": "5079b279"
+      },
+      "metrics": {
+        "hostops_total": 120,
+        "hostops_by_type": {
+          "replaceText": 120
+        },
+        "boundary_calls": 120,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "swap",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "61db7ae5f2b6fb94",
+        "fb_rgba8": "9c1b0980"
+      },
+      "metrics": {
+        "hostops_total": 46,
+        "hostops_by_type": {
+          "createNode": 14,
+          "setStyle": 8,
+          "setText": 6,
+          "removeChild": 2,
+          "insertBefore": 14,
+          "destroyNode": 2
+        },
+        "boundary_calls": 46,
+        "nodes_created": 14,
+        "nodes_destroyed": 2
+      }
+    },
+    {
+      "action": "reverse",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2aef9539cbdfc0c0",
+        "fb_rgba8": "f1344b7d"
+      },
+      "metrics": {
+        "hostops_total": 27600,
+        "hostops_by_type": {
+          "createNode": 8400,
+          "setStyle": 4800,
+          "setText": 3600,
+          "removeChild": 1200,
+          "insertBefore": 8400,
+          "destroyNode": 1200
+        },
+        "boundary_calls": 27600,
+        "nodes_created": 8400,
+        "nodes_destroyed": 1200
+      }
+    },
+    {
+      "action": "remove",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "848a642a67e117b1",
+        "fb_rgba8": "726597e0"
+      },
+      "metrics": {
+        "hostops_total": 23400,
+        "hostops_by_type": {
+          "createNode": 7000,
+          "setStyle": 4000,
+          "setText": 3000,
+          "removeChild": 1200,
+          "insertBefore": 7000,
+          "destroyNode": 1200
+        },
+        "boundary_calls": 23400,
+        "nodes_created": 7000,
+        "nodes_destroyed": 1200
+      }
+    },
+    {
+      "action": "clear",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2adbd5c8610f9ff3",
+        "fb_rgba8": "cd14be5e"
+      },
+      "metrics": {
+        "hostops_total": 2000,
+        "hostops_by_type": {
+          "removeChild": 1000,
+          "destroyNode": 1000
+        },
+        "boundary_calls": 2000,
+        "nodes_created": 0,
+        "nodes_destroyed": 1000
+      }
+    }
+  ]
+}

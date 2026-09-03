@@ -1,0 +1,6 @@
+[submodule "vendor/pocketjs"]
+	path = vendor/pocketjs
+	url = https://github.com/HalfSweet/pocketjs.git
+[submodule "vendor/quickjs-rs"]
+	path = vendor/quickjs-rs
+	url = https://github.com/pocket-stack/quickjs-rs.git

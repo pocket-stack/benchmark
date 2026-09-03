@@ -1,0 +1,12 @@
+{
+  "id": "reactive-fanin",
+  "family": "reactive",
+  "track": "canonical",
+  "scale": 100,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["set-one", "set-all", "set-back"],
+  "warmup": 1,
+  "max_settle": 120,
+  "description": "100 个独立 signal / ref / state 汇入一个 Text（求和）：set-one 改第 0 个（4950→5950），set-all 全部改一遍（→104950），set-back 全部恢复（→4950）；每个 action 都写绝对值，first==steady 与有无 reset 无关"
+}

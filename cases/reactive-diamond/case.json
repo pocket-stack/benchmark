@@ -1,0 +1,12 @@
+{
+  "id": "reactive-diamond",
+  "family": "reactive",
+  "track": "canonical",
+  "scale": 32,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["set", "set-back"],
+  "warmup": 1,
+  "max_settle": 120,
+  "description": "菱形传播：一个源，两条派生（A=src*2、B=src+3），32 个 Text 各显示 A*B+i；一次源变更经两条中间派生再汇聚，考 glitch-free 传播成本。set: src 1→5，set-back: 5→1"
+}

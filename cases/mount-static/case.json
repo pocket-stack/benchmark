@@ -1,0 +1,12 @@
+{
+  "id": "mount-static",
+  "family": "mount",
+  "track": "canonical",
+  "scale": 200,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["noop"],
+  "warmup": 1,
+  "max_settle": 120,
+  "description": "静态树：20 行 × 4 个带底色的格子，约 180 个节点、深度 4；noop action 用来标定 harness 噪声底"
+}

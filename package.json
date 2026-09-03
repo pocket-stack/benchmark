@@ -1,0 +1,19 @@
+{
+  "name": "pocketjs-bench",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PocketJS benchmark: sim oracle, CI host shell (CPU time), QEMU + SO3 reference machines (instruction counts)",
+  "scripts": {
+    "build": "bun harness/build.ts",
+    "oracle": "bun harness/oracle.ts",
+    "run-host": "bun harness/run-host.ts",
+    "run-ref": "bun harness/run-ref.ts",
+    "build-ref-tools": "sh ref/build-tools.sh",
+    "compare": "bun harness/compare.ts",
+    "report": "bun harness/report.ts",
+    "corpus": "bun corpus/generate.ts",
+    "gen": "bun spec/gen-c.ts && bun spec/gen-rust.ts",
+    "test": "bun test spec harness corpus plugin cases"
+  }
+}

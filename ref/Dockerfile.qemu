@@ -1,0 +1,28 @@
+# QEMU/plugin side of the reference runner. The SO3 build environment remains
+# separate because it is linux/amd64-only; this image is multi-arch and builds
+# pocketcount for the architecture of the QEMU process that will load it.
+FROM debian:trixie@sha256:f324c7ff54321e8d9c588493a20244965938ce0aa50bbd1022d38010e9ffc4b1
+
+ARG QEMU_VERSION=10.0.11
+ARG QEMU_DEBIAN_VERSION=1:10.0.11+ds-0+deb13u1
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+      qemu-system-arm=${QEMU_DEBIAN_VERSION} \
+      qemu-system-common=${QEMU_DEBIAN_VERSION} \
+      qemu-system-data=${QEMU_DEBIAN_VERSION} \
+      ca-certificates curl gcc libc6-dev libglib2.0-dev make pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /opt/pocketcount
+RUN curl -fsSL \
+      "https://gitlab.com/qemu-project/qemu/-/raw/v${QEMU_VERSION}/include/qemu/qemu-plugin.h" \
+      -o qemu-plugin.h
+COPY plugin/pocketcount.c ./pocketcount.c
+RUN cc -O2 -Wall -Wextra -std=gnu11 -fPIC -shared \
+      -I. $(pkg-config --cflags glib-2.0) pocketcount.c \
+      -o libpocketcount.so $(pkg-config --libs glib-2.0) \
+    && qemu-system-aarch64 --version | grep -F "version ${QEMU_VERSION}"
+
+LABEL org.opencontainers.image.title="pocketjs-bench QEMU reference runner"
+CMD ["bash"]

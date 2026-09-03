@@ -1,0 +1,12 @@
+{
+  "id": "list-create",
+  "family": "list",
+  "track": "canonical",
+  "scale": 1000,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["create", "clear"],
+  "warmup": 1,
+  "max_settle": 120,
+  "description": "keyed 列表一次性创建 1000 行（每行三个 Text），再清空"
+}

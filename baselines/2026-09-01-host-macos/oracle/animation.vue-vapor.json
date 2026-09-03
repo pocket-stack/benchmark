@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "bundle": "animation.vue-vapor",
+  "name": "animation",
+  "framework": "vue-vapor",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:53.018Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "ad4a5729f1baed70",
+      "fb_rgba8": "aa97c6bf"
+    },
+    "metrics": {
+      "hostops_total": 246,
+      "hostops_by_type": {
+        "loadFontAtlas": 2,
+        "loadStyles": 1,
+        "createNode": 78,
+        "setProp": 11,
+        "insertBefore": 78,
+        "setText": 26,
+        "setStyle": 50
+      },
+      "boundary_calls": 246,
+      "nodes_created": 78,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "start",
+      "iteration": "first",
+      "settle_frames": 17,
+      "settled": true,
+      "hashes": {
+        "drawlist": "14b8e2d9500607f0",
+        "fb_rgba8": "2c84a49f"
+      },
+      "metrics": {
+        "hostops_total": 0,
+        "hostops_by_type": {},
+        "boundary_calls": 0,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "back",
+      "iteration": "first",
+      "settle_frames": 17,
+      "settled": true,
+      "hashes": {
+        "drawlist": "ad4a5729f1baed70",
+        "fb_rgba8": "aa97c6bf"
+      },
+      "metrics": {
+        "hostops_total": 0,
+        "hostops_by_type": {},
+        "boundary_calls": 0,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "start",
+      "iteration": "steady",
+      "settle_frames": 17,
+      "settled": true,
+      "hashes": {
+        "drawlist": "14b8e2d9500607f0",
+        "fb_rgba8": "2c84a49f"
+      },
+      "metrics": {
+        "hostops_total": 0,
+        "hostops_by_type": {},
+        "boundary_calls": 0,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "back",
+      "iteration": "steady",
+      "settle_frames": 17,
+      "settled": true,
+      "hashes": {
+        "drawlist": "ad4a5729f1baed70",
+        "fb_rgba8": "aa97c6bf"
+      },
+      "metrics": {
+        "hostops_total": 0,
+        "hostops_by_type": {},
+        "boundary_calls": 0,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    }
+  ]
+}

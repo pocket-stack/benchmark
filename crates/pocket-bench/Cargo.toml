@@ -1,0 +1,30 @@
+# pocket-bench — bench shell 的 core 入口：在 pocketjs-symbian-core 的 C ABI 之上
+# 加 tape replayer、DrawList words 导入导出与 RGBA8 渲染。
+# no_std；两块静态 arena 由 shell 通过 pocket_host_alloc/realloc/free 提供。
+#
+# 目标：本机（CI host）、armv7-unknown-linux-musleabihf（SO3 virt32）、
+# aarch64-unknown-linux-musl（SO3 virt64）。profile 与 engine/symbian 一致。
+#
+# 独立 crate（空 [workspace]）：vendor/pocketjs 下的 engine/core、engine/symbian
+# 也都是独立 crate，见各自 Cargo.toml。
+
+[package]
+name = "pocket-bench"
+version = "0.1.0"
+edition = "2021"
+description = "PocketJS bench core: symbian-core C ABI plus tape replayer, DrawList words I/O and RGBA8 render"
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+pocketjs-symbian-core = { path = "../../vendor/pocketjs/engine/symbian", default-features = false, features = ["bare-platform", "software-only", "host-allocator"] }
+pocketjs-core = { path = "../../vendor/pocketjs/engine/core" }
+
+[workspace]
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"

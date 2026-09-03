@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "bundle": "list-ops.vue-vapor",
+  "name": "list-ops",
+  "framework": "vue-vapor",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:54.270Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "0dfb8d7e8faddf03",
+      "fb_rgba8": "d594c455"
+    },
+    "metrics": {
+      "hostops_total": 21034,
+      "hostops_by_type": {
+        "loadFontAtlas": 3,
+        "loadStyles": 1,
+        "createNode": 7007,
+        "setProp": 11,
+        "insertBefore": 7007,
+        "setText": 3002,
+        "setStyle": 4003
+      },
+      "boundary_calls": 21034,
+      "nodes_created": 7007,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "append",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455"
+      },
+      "metrics": {
+        "hostops_total": 24100,
+        "hostops_by_type": {
+          "destroyNode": 1000,
+          "createNode": 7700,
+          "setText": 3300,
+          "insertBefore": 7700,
+          "setStyle": 4400
+        },
+        "boundary_calls": 24100,
+        "nodes_created": 7700,
+        "nodes_destroyed": 1000
+      }
+    },
+    {
+      "action": "insert-middle",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455"
+      },
+      "metrics": {
+        "hostops_total": 2100,
+        "hostops_by_type": {
+          "createNode": 700,
+          "setText": 300,
+          "insertBefore": 700,
+          "setStyle": 400
+        },
+        "boundary_calls": 2100,
+        "nodes_created": 700,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "update-every-10th",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "caf61f704d7b3f05",
+        "fb_rgba8": "5079b279"
+      },
+      "metrics": {
+        "hostops_total": 720,
+        "hostops_by_type": {
+          "replaceText": 720
+        },
+        "boundary_calls": 720,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "swap",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "61db7ae5f2b6fb94",
+        "fb_rgba8": "9c1b0980"
+      },
+      "metrics": {
+        "hostops_total": 2,
+        "hostops_by_type": {
+          "insertBefore": 2
+        },
+        "boundary_calls": 2,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "reverse",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2aef9539cbdfc0c0",
+        "fb_rgba8": "f1344b7d"
+      },
+      "metrics": {
+        "hostops_total": 1199,
+        "hostops_by_type": {
+          "insertBefore": 1199
+        },
+        "boundary_calls": 1199,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "remove",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "848a642a67e117b1",
+        "fb_rgba8": "726597e0"
+      },
+      "metrics": {
+        "hostops_total": 200,
+        "hostops_by_type": {
+          "removeChild": 200
+        },
+        "boundary_calls": 200,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "clear",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2adbd5c8610f9ff3",
+        "fb_rgba8": "cd14be5e"
+      },
+      "metrics": {
+        "hostops_total": 1200,
+        "hostops_by_type": {
+          "destroyNode": 200,
+          "removeChild": 1000
+        },
+        "boundary_calls": 1200,
+        "nodes_created": 0,
+        "nodes_destroyed": 200
+      }
+    },
+    {
+      "action": "append",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455"
+      },
+      "metrics": {
+        "hostops_total": 24100,
+        "hostops_by_type": {
+          "destroyNode": 1000,
+          "createNode": 7700,
+          "setText": 3300,
+          "insertBefore": 7700,
+          "setStyle": 4400
+        },
+        "boundary_calls": 24100,
+        "nodes_created": 7700,
+        "nodes_destroyed": 1000
+      }
+    },
+    {
+      "action": "insert-middle",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455"
+      },
+      "metrics": {
+        "hostops_total": 2100,
+        "hostops_by_type": {
+          "createNode": 700,
+          "setText": 300,
+          "insertBefore": 700,
+          "setStyle": 400
+        },
+        "boundary_calls": 2100,
+        "nodes_created": 700,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "update-every-10th",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "caf61f704d7b3f05",
+        "fb_rgba8": "5079b279"
+      },
+      "metrics": {
+        "hostops_total": 720,
+        "hostops_by_type": {
+          "replaceText": 720
+        },
+        "boundary_calls": 720,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "swap",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "61db7ae5f2b6fb94",
+        "fb_rgba8": "9c1b0980"
+      },
+      "metrics": {
+        "hostops_total": 2,
+        "hostops_by_type": {
+          "insertBefore": 2
+        },
+        "boundary_calls": 2,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "reverse",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2aef9539cbdfc0c0",
+        "fb_rgba8": "f1344b7d"
+      },
+      "metrics": {
+        "hostops_total": 1199,
+        "hostops_by_type": {
+          "insertBefore": 1199
+        },
+        "boundary_calls": 1199,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "remove",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "848a642a67e117b1",
+        "fb_rgba8": "726597e0"
+      },
+      "metrics": {
+        "hostops_total": 200,
+        "hostops_by_type": {
+          "removeChild": 200
+        },
+        "boundary_calls": 200,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "clear",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2adbd5c8610f9ff3",
+        "fb_rgba8": "cd14be5e"
+      },
+      "metrics": {
+        "hostops_total": 1200,
+        "hostops_by_type": {
+          "destroyNode": 200,
+          "removeChild": 1000
+        },
+        "boundary_calls": 1200,
+        "nodes_created": 0,
+        "nodes_destroyed": 200
+      }
+    }
+  ]
+}

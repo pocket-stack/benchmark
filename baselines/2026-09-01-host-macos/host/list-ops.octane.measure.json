@@ -1,0 +1,1931 @@
+{
+  "schema_version": 1,
+  "bundle": "list-ops.octane",
+  "name": "list-ops",
+  "framework": "octane",
+  "kind": "case",
+  "observer": "measure",
+  "shell": "dist/shell/host/pocket-bench-shell",
+  "jsonl": "/Users/halfsweet/Documents/PocketJS/benchmark/results/host/jsonl/list-ops.octane.measure.jsonl",
+  "generated": "2026-09-01T10:44:24.885Z",
+  "identity": {
+    "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+    "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+    "solid_js_version": "1.9.14",
+    "vue_runtime_vapor_version": "3.6.0-rc.1",
+    "octane_version": "0.1.26",
+    "adapter_hash": null,
+    "bundle_hash": "004e343e75683efb",
+    "pak_hash": "c0427d5444aff0ee",
+    "styles_hash": null,
+    "atlas_hashes": [],
+    "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+    "quickjs_defines": [],
+    "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+    "llvm_version": "21.1.8",
+    "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "profile_flags": [],
+    "rust_target": "aarch64-apple-darwin",
+    "so3_commit": null,
+    "so3_defconfig": null,
+    "musl_version": null,
+    "qemu_version": null,
+    "qemu_machine": null,
+    "qemu_cpu": null,
+    "icount_shift": null,
+    "plugin_version": null,
+    "ref_image_digest": null,
+    "sim_hz": 60,
+    "tick_hz": 60,
+    "viewport": [
+      480,
+      272
+    ],
+    "pixel_format": "rgba8",
+    "shell_op_caps": [
+      "createNode",
+      "destroyNode",
+      "insertBefore",
+      "removeChild",
+      "setStyle",
+      "setProp",
+      "setText",
+      "replaceText",
+      "uploadTexture",
+      "setImage",
+      "setSprite",
+      "animate",
+      "cancelAnim",
+      "setFocus",
+      "setActive",
+      "hitTest",
+      "hitTestBounds",
+      "setCursor",
+      "setCursorPos",
+      "loadStyles",
+      "loadFontAtlas",
+      "measureText",
+      "freeTexture",
+      "uploadImgEntry"
+    ],
+    "arena_limit_bytes": {
+      "quickjs": 0,
+      "core": 0
+    },
+    "ci_runner_class": null
+  },
+  "results": [
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 3733,
+        "jobs_count": 0,
+        "jobs_us": 1,
+        "settle_frames": 1,
+        "drawlist_words": 672,
+        "js_peak_bytes": 112435850,
+        "eval_us": 322189,
+        "mount_to_settle_us": 3733
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": -1,
+          "stage": "eval",
+          "cpu_us": 322189
+        },
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 11
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3317
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 290
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 114
+        }
+      ],
+      "oracle_match": true,
+      "action": "mount"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 479353,
+        "jobs_count": 1,
+        "jobs_us": 6,
+        "settle_frames": 1,
+        "drawlist_words": 672,
+        "js_peak_bytes": 321978456
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 475516
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3329
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 398
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 104
+        }
+      ],
+      "oracle_match": true,
+      "action": "append"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 432300,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 672,
+        "js_peak_bytes": 321978456
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 427890
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3909
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 373
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 121
+        }
+      ],
+      "oracle_match": true,
+      "action": "insert-middle"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 387300,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 678,
+        "js_peak_bytes": 321978456
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "caf61f704d7b3f05",
+        "fb_rgba8": "5079b279",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 385702
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 1117
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 373
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 101
+        }
+      ],
+      "oracle_match": true,
+      "action": "update-every-10th"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 427315,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 692,
+        "js_peak_bytes": 321978456
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "61db7ae5f2b6fb94",
+        "fb_rgba8": "9c1b0980",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 422742
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 4084
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 369
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 113
+        }
+      ],
+      "oracle_match": true,
+      "action": "swap"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 320363,
+        "jobs_count": 1,
+        "jobs_us": 6,
+        "settle_frames": 1,
+        "drawlist_words": 866,
+        "js_peak_bytes": 321978456
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "2aef9539cbdfc0c0",
+        "fb_rgba8": "f1344b7d",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 316250
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3621
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 358
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 128
+        }
+      ],
+      "oracle_match": true,
+      "action": "reverse"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 491108,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 790,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "848a642a67e117b1",
+        "fb_rgba8": "726597e0",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 487711
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 2959
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 310
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 121
+        }
+      ],
+      "oracle_match": true,
+      "action": "remove"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 19224,
+        "jobs_count": 1,
+        "jobs_us": 4,
+        "settle_frames": 1,
+        "drawlist_words": 61,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "2adbd5c8610f9ff3",
+        "fb_rgba8": "cd14be5e",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 19006
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 4
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 155
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 53
+        }
+      ],
+      "oracle_match": true,
+      "action": "clear"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 251734,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 672,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 247984
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3313
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 326
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 104
+        }
+      ],
+      "oracle_match": true,
+      "action": "append"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 538760,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 672,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "0dfb8d7e8faddf03",
+        "fb_rgba8": "d594c455",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 534577
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3704
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 367
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 105
+        }
+      ],
+      "oracle_match": true,
+      "action": "insert-middle"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 469811,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 678,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "caf61f704d7b3f05",
+        "fb_rgba8": "5079b279",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 468125
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 1217
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 356
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 106
+        }
+      ],
+      "oracle_match": true,
+      "action": "update-every-10th"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 306252,
+        "jobs_count": 1,
+        "jobs_us": 6,
+        "settle_frames": 1,
+        "drawlist_words": 692,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "61db7ae5f2b6fb94",
+        "fb_rgba8": "9c1b0980",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 301856
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3889
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 380
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 121
+        }
+      ],
+      "oracle_match": true,
+      "action": "swap"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 476932,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 866,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "2aef9539cbdfc0c0",
+        "fb_rgba8": "f1344b7d",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 472767
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3667
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 365
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 126
+        }
+      ],
+      "oracle_match": true,
+      "action": "reverse"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 459611,
+        "jobs_count": 1,
+        "jobs_us": 7,
+        "settle_frames": 1,
+        "drawlist_words": 790,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "848a642a67e117b1",
+        "fb_rgba8": "726597e0",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 455927
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 3256
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 300
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 121
+        }
+      ],
+      "oracle_match": true,
+      "action": "remove"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "004e343e75683efb",
+        "pak_hash": "c0427d5444aff0ee",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "list-ops@1000",
+      "family": "list",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 328929,
+        "pak_bytes": 71200,
+        "action_cpu_us": 20085,
+        "jobs_count": 1,
+        "jobs_us": 6,
+        "settle_frames": 1,
+        "drawlist_words": 61,
+        "js_peak_bytes": 341268256
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "2adbd5c8610f9ff3",
+        "fb_rgba8": "cd14be5e",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 19862
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 146
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 64
+        }
+      ],
+      "oracle_match": true,
+      "action": "clear"
+    }
+  ]
+}

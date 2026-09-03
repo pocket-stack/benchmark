@@ -1,0 +1,14 @@
+{
+  "$comment": "宏 app 的默认输入 tape（锁存格式 frame:mask）。来自 vendor/pocketjs/tools/bench-ppsspp.ts 的 SPECS：frames = capStart + capN。gallery 没有 PSP bench spec，先跑 90 帧无输入。",
+  "hero": { "frames": 96, "input": "0:0,58:0x40,62:0,76:0x2000,80:0" },
+  "cards": { "frames": 96, "input": "0:0,20:0x20,24:0,28:0x20,32:0,44:0x2000,48:0" },
+  "stats": { "frames": 128, "input": "0:0,84:0x20,88:0" },
+  "library": { "frames": 124, "input": "0:0,8:0x20,12:0,16:0x20,20:0,32:0x2000,36:0" },
+  "settings": {
+    "frames": 100,
+    "input": "0:0,4:0x40,8:0,10:0x2000,14:0,16:0x40,20:0,22:0x2000,26:0,28:0x40,32:0,34:0x2000,38:0,40:0x40,42:0,44:0x40,46:0,48:0x40,52:0,54:0x2000,58:0"
+  },
+  "notifications": { "frames": 65, "input": "0:0,10:0x40,14:0,16:0x40,20:0,24:0x2000,28:0" },
+  "music": { "frames": 95, "input": "0:0,4:0x40,8:0,10:0x2000,14:0,30:0x40,34:0,36:0x40,40:0,42:0x2000,46:0,70:0x0200,74:0" },
+  "gallery": { "frames": 90, "input": "" }
+}

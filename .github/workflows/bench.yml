@@ -1,0 +1,73 @@
+# bench.yml — CI host 层：构建 shell 与 bundle，oracle + run-host，报告为 artifact。
+# 参考机层（QEMU + SO3）等 ref/ 镜像落地后加独立 job（docs/PLAN.md §7）。
+#
+# 注意：vendor/pocketjs 目前指向 HalfSweet/pocketjs 的 feat/soft-host；分支合并回
+# 上游后把 .gitmodules 换回 pocket-stack 并更新这里的说明。
+
+name: bench
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Rust nightly (crates/pocket-bench/rust-toolchain.toml)
+        run: rustup toolchain install nightly-2026-07-02 --profile minimal && rustup target add wasm32-unknown-unknown --toolchain nightly-2026-07-02 && rustup target add wasm32-unknown-unknown
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            crates/pocket-bench/target
+            vendor/pocketjs/engine/wasm/target
+          key: bench-cargo-${{ runner.os }}-${{ hashFiles('crates/pocket-bench/Cargo.lock', 'vendor/pocketjs/engine/wasm/Cargo.lock') }}
+
+      - name: Install framework deps (inside the submodule — one copy of each framework)
+        run: cd vendor/pocketjs && bun install --frozen-lockfile
+
+      - name: Spec codegen is committed and current
+        run: bun spec/gen-c.ts --check && bun spec/gen-rust.ts --check
+
+      - name: Unit tests
+        run: bun test spec harness corpus plugin cases
+
+      - name: Build the shell (measure / observe / guest)
+        run: make -C shell host
+
+      - name: Build bundles (cases × frameworks + hero)
+        run: bun harness/build.ts --apps hero
+
+      - name: Oracle (wasm)
+        run: bun harness/oracle.ts
+
+      - name: Run host shell (measure)
+        run: bun harness/run-host.ts --shell dist/shell/host/pocket-bench-shell
+
+      - name: Run host shell (observe)
+        run: bun harness/run-host.ts --shell dist/shell/host/pocket-bench-shell-observe --observer observe
+
+      - name: Report
+        run: bun harness/report.ts | tee report.md
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bench-results
+          path: |
+            results/
+            report.md
+          retention-days: 90

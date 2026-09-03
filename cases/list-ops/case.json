@@ -1,0 +1,12 @@
+{
+  "id": "list-ops",
+  "family": "list",
+  "track": "canonical",
+  "scale": 1000,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["append", "insert-middle", "update-every-10th", "swap", "reverse", "remove", "clear"],
+  "warmup": 1,
+  "max_settle": 120,
+  "description": "1000 行 keyed 列表上的结构操作：尾部加 100、中间插 100、每第 10 行改值、交换、反转、按 id 删 200、清空；每个 action 都是从共享数据模块取的绝对目标数组"
+}

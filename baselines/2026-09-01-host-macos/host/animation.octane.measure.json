@@ -1,0 +1,2301 @@
+{
+  "schema_version": 1,
+  "bundle": "animation.octane",
+  "name": "animation",
+  "framework": "octane",
+  "kind": "case",
+  "observer": "measure",
+  "shell": "dist/shell/host/pocket-bench-shell",
+  "jsonl": "/Users/halfsweet/Documents/PocketJS/benchmark/results/host/jsonl/animation.octane.measure.jsonl",
+  "generated": "2026-09-01T10:44:11.272Z",
+  "identity": {
+    "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+    "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+    "solid_js_version": "1.9.14",
+    "vue_runtime_vapor_version": "3.6.0-rc.1",
+    "octane_version": "0.1.26",
+    "adapter_hash": null,
+    "bundle_hash": "c4111e1be9a32b22",
+    "pak_hash": "a94fecc662ac336c",
+    "styles_hash": null,
+    "atlas_hashes": [],
+    "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+    "quickjs_defines": [],
+    "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+    "llvm_version": "21.1.8",
+    "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "profile_flags": [],
+    "rust_target": "aarch64-apple-darwin",
+    "so3_commit": null,
+    "so3_defconfig": null,
+    "musl_version": null,
+    "qemu_version": null,
+    "qemu_machine": null,
+    "qemu_cpu": null,
+    "icount_shift": null,
+    "plugin_version": null,
+    "ref_image_digest": null,
+    "sim_hz": 60,
+    "tick_hz": 60,
+    "viewport": [
+      480,
+      272
+    ],
+    "pixel_format": "rgba8",
+    "shell_op_caps": [
+      "createNode",
+      "destroyNode",
+      "insertBefore",
+      "removeChild",
+      "setStyle",
+      "setProp",
+      "setText",
+      "replaceText",
+      "uploadTexture",
+      "setImage",
+      "setSprite",
+      "animate",
+      "cancelAnim",
+      "setFocus",
+      "setActive",
+      "hitTest",
+      "hitTestBounds",
+      "setCursor",
+      "setCursorPos",
+      "loadStyles",
+      "loadFontAtlas",
+      "measureText",
+      "freeTexture",
+      "uploadImgEntry"
+    ],
+    "arena_limit_bytes": {
+      "quickjs": 0,
+      "core": 0
+    },
+    "ci_runner_class": null
+  },
+  "results": [
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "c4111e1be9a32b22",
+        "pak_hash": "a94fecc662ac336c",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "animation@24",
+      "family": "animation",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 325726,
+        "pak_bytes": 52688,
+        "action_cpu_us": 180,
+        "jobs_count": 0,
+        "jobs_us": 0,
+        "settle_frames": 1,
+        "drawlist_words": 2153,
+        "js_peak_bytes": 3044903,
+        "eval_us": 15946,
+        "mount_to_settle_us": 180
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "ad4a5729f1baed70",
+        "fb_rgba8": "aa97c6bf",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": -1,
+          "stage": "eval",
+          "cpu_us": 15946
+        },
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 55
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 17
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 102
+        }
+      ],
+      "oracle_match": true,
+      "action": "mount"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "c4111e1be9a32b22",
+        "pak_hash": "a94fecc662ac336c",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "animation@24",
+      "family": "animation",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 325726,
+        "pak_bytes": 52688,
+        "action_cpu_us": 1403,
+        "jobs_count": 0,
+        "jobs_us": 10,
+        "settle_frames": 17,
+        "drawlist_words": 2153,
+        "js_peak_bytes": 3044903
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "14b8e2d9500607f0",
+        "fb_rgba8": "2c84a49f",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 20
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 68
+        },
+        {
+          "frame": 1,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 1,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 1,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 1,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 1,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 2,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 2,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 2,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 2,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 2,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 3,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 3,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 3,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 3,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 3,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 4,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 4,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 4,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 4,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 4,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 5,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 5,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 5,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 5,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 5,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 6,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 6,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 6,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 6,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 6,
+          "stage": "render",
+          "cpu_us": 77
+        },
+        {
+          "frame": 7,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 7,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 7,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 7,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 7,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 8,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 8,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 8,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 8,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 8,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 9,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 9,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 9,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 9,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 9,
+          "stage": "render",
+          "cpu_us": 68
+        },
+        {
+          "frame": 10,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 10,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 10,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 10,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 10,
+          "stage": "render",
+          "cpu_us": 71
+        },
+        {
+          "frame": 11,
+          "stage": "js",
+          "cpu_us": 8
+        },
+        {
+          "frame": 11,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 11,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 11,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 11,
+          "stage": "render",
+          "cpu_us": 73
+        },
+        {
+          "frame": 12,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 12,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 12,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 12,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 12,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 13,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 13,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 13,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 13,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 13,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 14,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 14,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 14,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 14,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 14,
+          "stage": "render",
+          "cpu_us": 75
+        },
+        {
+          "frame": 15,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 15,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 15,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 15,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 15,
+          "stage": "render",
+          "cpu_us": 71
+        },
+        {
+          "frame": 16,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 16,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 16,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 16,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 16,
+          "stage": "render",
+          "cpu_us": 73
+        }
+      ],
+      "oracle_match": true,
+      "action": "start"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "c4111e1be9a32b22",
+        "pak_hash": "a94fecc662ac336c",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "animation@24",
+      "family": "animation",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 325726,
+        "pak_bytes": 52688,
+        "action_cpu_us": 1505,
+        "jobs_count": 0,
+        "jobs_us": 16,
+        "settle_frames": 17,
+        "drawlist_words": 2153,
+        "js_peak_bytes": 3044903
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "ad4a5729f1baed70",
+        "fb_rgba8": "aa97c6bf",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 36
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 1,
+          "stage": "js",
+          "cpu_us": 5
+        },
+        {
+          "frame": 1,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 1,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 1,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 1,
+          "stage": "render",
+          "cpu_us": 119
+        },
+        {
+          "frame": 2,
+          "stage": "js",
+          "cpu_us": 5
+        },
+        {
+          "frame": 2,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 2,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 2,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 2,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 3,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 3,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 3,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 3,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 3,
+          "stage": "render",
+          "cpu_us": 72
+        },
+        {
+          "frame": 4,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 4,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 4,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 4,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 4,
+          "stage": "render",
+          "cpu_us": 76
+        },
+        {
+          "frame": 5,
+          "stage": "js",
+          "cpu_us": 5
+        },
+        {
+          "frame": 5,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 5,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 5,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 5,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 6,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 6,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 6,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 6,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 6,
+          "stage": "render",
+          "cpu_us": 68
+        },
+        {
+          "frame": 7,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 7,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 7,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 7,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 7,
+          "stage": "render",
+          "cpu_us": 66
+        },
+        {
+          "frame": 8,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 8,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 8,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 8,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 8,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 9,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 9,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 9,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 9,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 9,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 10,
+          "stage": "js",
+          "cpu_us": 7
+        },
+        {
+          "frame": 10,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 10,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 10,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 10,
+          "stage": "render",
+          "cpu_us": 73
+        },
+        {
+          "frame": 11,
+          "stage": "js",
+          "cpu_us": 5
+        },
+        {
+          "frame": 11,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 11,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 11,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 11,
+          "stage": "render",
+          "cpu_us": 71
+        },
+        {
+          "frame": 12,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 12,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 12,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 12,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 12,
+          "stage": "render",
+          "cpu_us": 71
+        },
+        {
+          "frame": 13,
+          "stage": "js",
+          "cpu_us": 8
+        },
+        {
+          "frame": 13,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 13,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 13,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 13,
+          "stage": "render",
+          "cpu_us": 72
+        },
+        {
+          "frame": 14,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 14,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 14,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 14,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 14,
+          "stage": "render",
+          "cpu_us": 78
+        },
+        {
+          "frame": 15,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 15,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 15,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 15,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 15,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 16,
+          "stage": "js",
+          "cpu_us": 13
+        },
+        {
+          "frame": 16,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 16,
+          "stage": "tick",
+          "cpu_us": 3
+        },
+        {
+          "frame": 16,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 16,
+          "stage": "render",
+          "cpu_us": 72
+        }
+      ],
+      "oracle_match": true,
+      "action": "back"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "c4111e1be9a32b22",
+        "pak_hash": "a94fecc662ac336c",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "animation@24",
+      "family": "animation",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 325726,
+        "pak_bytes": 52688,
+        "action_cpu_us": 1555,
+        "jobs_count": 0,
+        "jobs_us": 15,
+        "settle_frames": 17,
+        "drawlist_words": 2153,
+        "js_peak_bytes": 3044903
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "14b8e2d9500607f0",
+        "fb_rgba8": "2c84a49f",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 48
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 74
+        },
+        {
+          "frame": 1,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 1,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 1,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 1,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 1,
+          "stage": "render",
+          "cpu_us": 72
+        },
+        {
+          "frame": 2,
+          "stage": "js",
+          "cpu_us": 9
+        },
+        {
+          "frame": 2,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 2,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 2,
+          "stage": "draw",
+          "cpu_us": 9
+        },
+        {
+          "frame": 2,
+          "stage": "render",
+          "cpu_us": 73
+        },
+        {
+          "frame": 3,
+          "stage": "js",
+          "cpu_us": 19
+        },
+        {
+          "frame": 3,
+          "stage": "jobs",
+          "cpu_us": 3
+        },
+        {
+          "frame": 3,
+          "stage": "tick",
+          "cpu_us": 4
+        },
+        {
+          "frame": 3,
+          "stage": "draw",
+          "cpu_us": 19
+        },
+        {
+          "frame": 3,
+          "stage": "render",
+          "cpu_us": 98
+        },
+        {
+          "frame": 4,
+          "stage": "js",
+          "cpu_us": 10
+        },
+        {
+          "frame": 4,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 4,
+          "stage": "tick",
+          "cpu_us": 3
+        },
+        {
+          "frame": 4,
+          "stage": "draw",
+          "cpu_us": 9
+        },
+        {
+          "frame": 4,
+          "stage": "render",
+          "cpu_us": 77
+        },
+        {
+          "frame": 5,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 5,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 5,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 5,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 5,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 6,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 6,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 6,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 6,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 6,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 7,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 7,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 7,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 7,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 7,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 8,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 8,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 8,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 8,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 8,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 9,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 9,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 9,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 9,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 9,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 10,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 10,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 10,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 10,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 10,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 11,
+          "stage": "js",
+          "cpu_us": 7
+        },
+        {
+          "frame": 11,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 11,
+          "stage": "tick",
+          "cpu_us": 4
+        },
+        {
+          "frame": 11,
+          "stage": "draw",
+          "cpu_us": 9
+        },
+        {
+          "frame": 11,
+          "stage": "render",
+          "cpu_us": 89
+        },
+        {
+          "frame": 12,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 12,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 12,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 12,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 12,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 13,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 13,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 13,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 13,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 13,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 14,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 14,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 14,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 14,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 14,
+          "stage": "render",
+          "cpu_us": 86
+        },
+        {
+          "frame": 15,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 15,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 15,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 15,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 15,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 16,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 16,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 16,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 16,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 16,
+          "stage": "render",
+          "cpu_us": 70
+        }
+      ],
+      "oracle_match": true,
+      "action": "start"
+    },
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "c4111e1be9a32b22",
+        "pak_hash": "a94fecc662ac336c",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "animation@24",
+      "family": "animation",
+      "track": "canonical",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "measure",
+      "iteration": "steady",
+      "metrics": {
+        "bundle_bytes": 325726,
+        "pak_bytes": 52688,
+        "action_cpu_us": 1517,
+        "jobs_count": 0,
+        "jobs_us": 22,
+        "settle_frames": 17,
+        "drawlist_words": 2153,
+        "js_peak_bytes": 3044903
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "ad4a5729f1baed70",
+        "fb_rgba8": "aa97c6bf",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 45
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 68
+        },
+        {
+          "frame": 1,
+          "stage": "js",
+          "cpu_us": 13
+        },
+        {
+          "frame": 1,
+          "stage": "jobs",
+          "cpu_us": 9
+        },
+        {
+          "frame": 1,
+          "stage": "tick",
+          "cpu_us": 10
+        },
+        {
+          "frame": 1,
+          "stage": "draw",
+          "cpu_us": 13
+        },
+        {
+          "frame": 1,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 2,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 2,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 2,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 2,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 2,
+          "stage": "render",
+          "cpu_us": 77
+        },
+        {
+          "frame": 3,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 3,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 3,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 3,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 3,
+          "stage": "render",
+          "cpu_us": 71
+        },
+        {
+          "frame": 4,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 4,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 4,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 4,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 4,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 5,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 5,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 5,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 5,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 5,
+          "stage": "render",
+          "cpu_us": 71
+        },
+        {
+          "frame": 6,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 6,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 6,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 6,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 6,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 7,
+          "stage": "js",
+          "cpu_us": 7
+        },
+        {
+          "frame": 7,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 7,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 7,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 7,
+          "stage": "render",
+          "cpu_us": 87
+        },
+        {
+          "frame": 8,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 8,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 8,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 8,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 8,
+          "stage": "render",
+          "cpu_us": 71
+        },
+        {
+          "frame": 9,
+          "stage": "js",
+          "cpu_us": 7
+        },
+        {
+          "frame": 9,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 9,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 9,
+          "stage": "draw",
+          "cpu_us": 9
+        },
+        {
+          "frame": 9,
+          "stage": "render",
+          "cpu_us": 74
+        },
+        {
+          "frame": 10,
+          "stage": "js",
+          "cpu_us": 5
+        },
+        {
+          "frame": 10,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 10,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 10,
+          "stage": "draw",
+          "cpu_us": 8
+        },
+        {
+          "frame": 10,
+          "stage": "render",
+          "cpu_us": 82
+        },
+        {
+          "frame": 11,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 11,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 11,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 11,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 11,
+          "stage": "render",
+          "cpu_us": 68
+        },
+        {
+          "frame": 12,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 12,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 12,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 12,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 12,
+          "stage": "render",
+          "cpu_us": 78
+        },
+        {
+          "frame": 13,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 13,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 13,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 13,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 13,
+          "stage": "render",
+          "cpu_us": 69
+        },
+        {
+          "frame": 14,
+          "stage": "js",
+          "cpu_us": 5
+        },
+        {
+          "frame": 14,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 14,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 14,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 14,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 15,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 15,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 15,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 15,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 15,
+          "stage": "render",
+          "cpu_us": 70
+        },
+        {
+          "frame": 16,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 16,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 16,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 16,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 16,
+          "stage": "render",
+          "cpu_us": 71
+        }
+      ],
+      "oracle_match": true,
+      "action": "back"
+    }
+  ]
+}

@@ -1,0 +1,2599 @@
+{
+  "schema_version": 1,
+  "bundle": "hero.octane",
+  "name": "hero",
+  "framework": "octane",
+  "kind": "app",
+  "observer": "observe",
+  "shell": "dist/shell/host/pocket-bench-shell-observe",
+  "jsonl": "/Users/halfsweet/Documents/PocketJS/benchmark/results/host/jsonl/hero.octane.observe.jsonl",
+  "generated": "2026-09-01T10:56:55.706Z",
+  "identity": {
+    "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+    "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+    "solid_js_version": "1.9.14",
+    "vue_runtime_vapor_version": "3.6.0-rc.1",
+    "octane_version": "0.1.26",
+    "adapter_hash": null,
+    "bundle_hash": "b86662df2e29a8bb",
+    "pak_hash": "b13303a018fa8d08",
+    "styles_hash": null,
+    "atlas_hashes": [],
+    "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+    "quickjs_defines": [],
+    "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+    "llvm_version": "21.1.8",
+    "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "profile_flags": [],
+    "rust_target": "aarch64-apple-darwin",
+    "so3_commit": null,
+    "so3_defconfig": null,
+    "musl_version": null,
+    "qemu_version": null,
+    "qemu_machine": null,
+    "qemu_cpu": null,
+    "icount_shift": null,
+    "plugin_version": null,
+    "ref_image_digest": null,
+    "sim_hz": 60,
+    "tick_hz": 60,
+    "viewport": [
+      480,
+      272
+    ],
+    "pixel_format": "rgba8",
+    "shell_op_caps": [
+      "createNode",
+      "destroyNode",
+      "insertBefore",
+      "removeChild",
+      "setStyle",
+      "setProp",
+      "setText",
+      "replaceText",
+      "uploadTexture",
+      "setImage",
+      "setSprite",
+      "animate",
+      "cancelAnim",
+      "setFocus",
+      "setActive",
+      "hitTest",
+      "hitTestBounds",
+      "setCursor",
+      "setCursorPos",
+      "loadStyles",
+      "loadFontAtlas",
+      "measureText",
+      "freeTexture",
+      "uploadImgEntry"
+    ],
+    "arena_limit_bytes": {
+      "quickjs": 0,
+      "core": 0
+    },
+    "ci_runner_class": null
+  },
+  "results": [
+    {
+      "schema_version": 1,
+      "identity": {
+        "pocketjs_commit": "7df41e0081debe823d744ddfdc82e24d01870cbb",
+        "bench_commit": "f0c64f156d8e50e247934c71895feb4bada00675",
+        "solid_js_version": "1.9.14",
+        "vue_runtime_vapor_version": "3.6.0-rc.1",
+        "octane_version": "0.1.26",
+        "adapter_hash": null,
+        "bundle_hash": "b86662df2e29a8bb",
+        "pak_hash": "b13303a018fa8d08",
+        "styles_hash": null,
+        "atlas_hashes": [],
+        "quickjs_rev": "ba5bdd0dc013518768e76cd9e05cd30ed53dd35b",
+        "quickjs_defines": [],
+        "rustc_version": "rustc 1.93.0 (254b59607 2026-01-19)",
+        "llvm_version": "21.1.8",
+        "c_toolchain": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+        "profile_flags": [],
+        "rust_target": "aarch64-apple-darwin",
+        "so3_commit": null,
+        "so3_defconfig": null,
+        "musl_version": null,
+        "qemu_version": null,
+        "qemu_machine": null,
+        "qemu_cpu": null,
+        "icount_shift": null,
+        "plugin_version": null,
+        "ref_image_digest": null,
+        "sim_hz": 60,
+        "tick_hz": 60,
+        "viewport": [
+          480,
+          272
+        ],
+        "pixel_format": "rgba8",
+        "shell_op_caps": [
+          "createNode",
+          "destroyNode",
+          "insertBefore",
+          "removeChild",
+          "setStyle",
+          "setProp",
+          "setText",
+          "replaceText",
+          "uploadTexture",
+          "setImage",
+          "setSprite",
+          "animate",
+          "cancelAnim",
+          "setFocus",
+          "setActive",
+          "hitTest",
+          "hitTestBounds",
+          "setCursor",
+          "setCursorPos",
+          "loadStyles",
+          "loadFontAtlas",
+          "measureText",
+          "freeTexture",
+          "uploadImgEntry"
+        ],
+        "arena_limit_bytes": {
+          "quickjs": 0,
+          "core": 0
+        },
+        "ci_runner_class": null
+      },
+      "case": "hero",
+      "family": "app",
+      "track": "idiomatic",
+      "framework": "octane",
+      "host": "host-shell",
+      "profile": "host",
+      "mode": "full",
+      "observer": "observe",
+      "iteration": "first",
+      "metrics": {
+        "bundle_bytes": 339094,
+        "pak_bytes": 461072,
+        "action_cpu_us": 16788,
+        "jobs_count": 0,
+        "jobs_us": 59,
+        "settle_frames": 96,
+        "hostops_total": 156,
+        "hostops_by_type": {
+          "createNode": 43,
+          "insertBefore": 43,
+          "setStyle": 28,
+          "setProp": 13,
+          "setText": 13,
+          "replaceText": 1,
+          "uploadTexture": 1,
+          "setImage": 1,
+          "setSprite": 1,
+          "animate": 1,
+          "setFocus": 1,
+          "setActive": 2,
+          "loadStyles": 1,
+          "loadFontAtlas": 6,
+          "uploadImgEntry": 1
+        },
+        "hostops_bytes": 460804,
+        "boundary_calls": 156,
+        "nodes_created": 43,
+        "nodes_destroyed": 0,
+        "drawlist_words": 701,
+        "js_peak_bytes": 2938434
+      },
+      "hashes": {
+        "tree": "",
+        "drawlist": "4316bb7eafb48c26",
+        "fb_rgba8": "bf33b892",
+        "fb_rgb565": null
+      },
+      "phases": [
+        {
+          "frame": 0,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 0,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 0,
+          "stage": "tick",
+          "cpu_us": 62
+        },
+        {
+          "frame": 0,
+          "stage": "draw",
+          "cpu_us": 52
+        },
+        {
+          "frame": 0,
+          "stage": "render",
+          "cpu_us": 218
+        },
+        {
+          "frame": 1,
+          "stage": "js",
+          "cpu_us": 4
+        },
+        {
+          "frame": 1,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 1,
+          "stage": "tick",
+          "cpu_us": 10
+        },
+        {
+          "frame": 1,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 1,
+          "stage": "render",
+          "cpu_us": 164
+        },
+        {
+          "frame": 2,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 2,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 2,
+          "stage": "tick",
+          "cpu_us": 8
+        },
+        {
+          "frame": 2,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 2,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 3,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 3,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 3,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 3,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 3,
+          "stage": "render",
+          "cpu_us": 155
+        },
+        {
+          "frame": 4,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 4,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 4,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 4,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 4,
+          "stage": "render",
+          "cpu_us": 153
+        },
+        {
+          "frame": 5,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 5,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 5,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 5,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 5,
+          "stage": "render",
+          "cpu_us": 160
+        },
+        {
+          "frame": 6,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 6,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 6,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 6,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 6,
+          "stage": "render",
+          "cpu_us": 154
+        },
+        {
+          "frame": 7,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 7,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 7,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 7,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 7,
+          "stage": "render",
+          "cpu_us": 153
+        },
+        {
+          "frame": 8,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 8,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 8,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 8,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 8,
+          "stage": "render",
+          "cpu_us": 154
+        },
+        {
+          "frame": 9,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 9,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 9,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 9,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 9,
+          "stage": "render",
+          "cpu_us": 154
+        },
+        {
+          "frame": 10,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 10,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 10,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 10,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 10,
+          "stage": "render",
+          "cpu_us": 154
+        },
+        {
+          "frame": 11,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 11,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 11,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 11,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 11,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 12,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 12,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 12,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 12,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 12,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 13,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 13,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 13,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 13,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 13,
+          "stage": "render",
+          "cpu_us": 156
+        },
+        {
+          "frame": 14,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 14,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 14,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 14,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 14,
+          "stage": "render",
+          "cpu_us": 154
+        },
+        {
+          "frame": 15,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 15,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 15,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 15,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 15,
+          "stage": "render",
+          "cpu_us": 156
+        },
+        {
+          "frame": 16,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 16,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 16,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 16,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 16,
+          "stage": "render",
+          "cpu_us": 156
+        },
+        {
+          "frame": 17,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 17,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 17,
+          "stage": "tick",
+          "cpu_us": 8
+        },
+        {
+          "frame": 17,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 17,
+          "stage": "render",
+          "cpu_us": 156
+        },
+        {
+          "frame": 18,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 18,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 18,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 18,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 18,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 19,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 19,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 19,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 19,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 19,
+          "stage": "render",
+          "cpu_us": 156
+        },
+        {
+          "frame": 20,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 20,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 20,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 20,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 20,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 21,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 21,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 21,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 21,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 21,
+          "stage": "render",
+          "cpu_us": 156
+        },
+        {
+          "frame": 22,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 22,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 22,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 22,
+          "stage": "draw",
+          "cpu_us": 3
+        },
+        {
+          "frame": 22,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 23,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 23,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 23,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 23,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 23,
+          "stage": "render",
+          "cpu_us": 156
+        },
+        {
+          "frame": 24,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 24,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 24,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 24,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 24,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 25,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 25,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 25,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 25,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 25,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 26,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 26,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 26,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 26,
+          "stage": "draw",
+          "cpu_us": 6
+        },
+        {
+          "frame": 26,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 27,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 27,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 27,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 27,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 27,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 28,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 28,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 28,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 28,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 28,
+          "stage": "render",
+          "cpu_us": 161
+        },
+        {
+          "frame": 29,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 29,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 29,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 29,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 29,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 30,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 30,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 30,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 30,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 30,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 31,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 31,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 31,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 31,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 31,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 32,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 32,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 32,
+          "stage": "tick",
+          "cpu_us": 9
+        },
+        {
+          "frame": 32,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 32,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 33,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 33,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 33,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 33,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 33,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 34,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 34,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 34,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 34,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 34,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 35,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 35,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 35,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 35,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 35,
+          "stage": "render",
+          "cpu_us": 161
+        },
+        {
+          "frame": 36,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 36,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 36,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 36,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 36,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 37,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 37,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 37,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 37,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 37,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 38,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 38,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 38,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 38,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 38,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 39,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 39,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 39,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 39,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 39,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 40,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 40,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 40,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 40,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 40,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 41,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 41,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 41,
+          "stage": "tick",
+          "cpu_us": 5
+        },
+        {
+          "frame": 41,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 41,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 42,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 42,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 42,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 42,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 42,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 43,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 43,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 43,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 43,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 43,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 44,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 44,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 44,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 44,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 44,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 45,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 45,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 45,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 45,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 45,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 46,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 46,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 46,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 46,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 46,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 47,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 47,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 47,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 47,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 47,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 48,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 48,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 48,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 48,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 48,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 49,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 49,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 49,
+          "stage": "tick",
+          "cpu_us": 6
+        },
+        {
+          "frame": 49,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 49,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 50,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 50,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 50,
+          "stage": "tick",
+          "cpu_us": 7
+        },
+        {
+          "frame": 50,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 50,
+          "stage": "render",
+          "cpu_us": 161
+        },
+        {
+          "frame": 51,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 51,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 51,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 51,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 51,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 52,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 52,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 52,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 52,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 52,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 53,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 53,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 53,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 53,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 53,
+          "stage": "render",
+          "cpu_us": 161
+        },
+        {
+          "frame": 54,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 54,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 54,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 54,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 54,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 55,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 55,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 55,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 55,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 55,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 56,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 56,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 56,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 56,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 56,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 57,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 57,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 57,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 57,
+          "stage": "draw",
+          "cpu_us": 8
+        },
+        {
+          "frame": 57,
+          "stage": "render",
+          "cpu_us": 165
+        },
+        {
+          "frame": 58,
+          "stage": "js",
+          "cpu_us": 10
+        },
+        {
+          "frame": 58,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 58,
+          "stage": "tick",
+          "cpu_us": 10
+        },
+        {
+          "frame": 58,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 58,
+          "stage": "render",
+          "cpu_us": 162
+        },
+        {
+          "frame": 59,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 59,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 59,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 59,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 59,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 60,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 60,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 60,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 60,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 60,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 61,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 61,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 61,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 61,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 61,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 62,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 62,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 62,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 62,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 62,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 63,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 63,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 63,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 63,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 63,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 64,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 64,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 64,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 64,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 64,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 65,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 65,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 65,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 65,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 65,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 66,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 66,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 66,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 66,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 66,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 67,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 67,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 67,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 67,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 67,
+          "stage": "render",
+          "cpu_us": 161
+        },
+        {
+          "frame": 68,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 68,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 68,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 68,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 68,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 69,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 69,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 69,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 69,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 69,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 70,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 70,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 70,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 70,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 70,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 71,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 71,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 71,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 71,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 71,
+          "stage": "render",
+          "cpu_us": 160
+        },
+        {
+          "frame": 72,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 72,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 72,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 72,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 72,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 73,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 73,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 73,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 73,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 73,
+          "stage": "render",
+          "cpu_us": 162
+        },
+        {
+          "frame": 74,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 74,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 74,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 74,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 74,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 75,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 75,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 75,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 75,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 75,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 76,
+          "stage": "js",
+          "cpu_us": 299
+        },
+        {
+          "frame": 76,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 76,
+          "stage": "tick",
+          "cpu_us": 9
+        },
+        {
+          "frame": 76,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 76,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 77,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 77,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 77,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 77,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 77,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 78,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 78,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 78,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 78,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 78,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 79,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 79,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 79,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 79,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 79,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 80,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 80,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 80,
+          "stage": "tick",
+          "cpu_us": 11
+        },
+        {
+          "frame": 80,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 80,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 81,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 81,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 81,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 81,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 81,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 82,
+          "stage": "js",
+          "cpu_us": 6
+        },
+        {
+          "frame": 82,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 82,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 82,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 82,
+          "stage": "render",
+          "cpu_us": 168
+        },
+        {
+          "frame": 83,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 83,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 83,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 83,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 83,
+          "stage": "render",
+          "cpu_us": 160
+        },
+        {
+          "frame": 84,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 84,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 84,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 84,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 84,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 85,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 85,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 85,
+          "stage": "tick",
+          "cpu_us": 2
+        },
+        {
+          "frame": 85,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 85,
+          "stage": "render",
+          "cpu_us": 157
+        },
+        {
+          "frame": 86,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 86,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 86,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 86,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 86,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 87,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 87,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 87,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 87,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 87,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 88,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 88,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 88,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 88,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 88,
+          "stage": "render",
+          "cpu_us": 172
+        },
+        {
+          "frame": 89,
+          "stage": "js",
+          "cpu_us": 1
+        },
+        {
+          "frame": 89,
+          "stage": "jobs",
+          "cpu_us": 2
+        },
+        {
+          "frame": 89,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 89,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 89,
+          "stage": "render",
+          "cpu_us": 162
+        },
+        {
+          "frame": 90,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 90,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 90,
+          "stage": "tick",
+          "cpu_us": 0
+        },
+        {
+          "frame": 90,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 90,
+          "stage": "render",
+          "cpu_us": 159
+        },
+        {
+          "frame": 91,
+          "stage": "js",
+          "cpu_us": 2
+        },
+        {
+          "frame": 91,
+          "stage": "jobs",
+          "cpu_us": 1
+        },
+        {
+          "frame": 91,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 91,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 91,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 92,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 92,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 92,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 92,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 92,
+          "stage": "render",
+          "cpu_us": 158
+        },
+        {
+          "frame": 93,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 93,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 93,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 93,
+          "stage": "draw",
+          "cpu_us": 4
+        },
+        {
+          "frame": 93,
+          "stage": "render",
+          "cpu_us": 160
+        },
+        {
+          "frame": 94,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 94,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 94,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 94,
+          "stage": "draw",
+          "cpu_us": 7
+        },
+        {
+          "frame": 94,
+          "stage": "render",
+          "cpu_us": 165
+        },
+        {
+          "frame": 95,
+          "stage": "js",
+          "cpu_us": 3
+        },
+        {
+          "frame": 95,
+          "stage": "jobs",
+          "cpu_us": 0
+        },
+        {
+          "frame": 95,
+          "stage": "tick",
+          "cpu_us": 1
+        },
+        {
+          "frame": 95,
+          "stage": "draw",
+          "cpu_us": 5
+        },
+        {
+          "frame": 95,
+          "stage": "render",
+          "cpu_us": 166
+        }
+      ],
+      "oracle_match": true,
+      "action": "tape"
+    }
+  ]
+}

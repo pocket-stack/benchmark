@@ -1,0 +1,17 @@
+{
+  "id": "deep-tree",
+  "family": "mount",
+  "track": "canonical",
+  "scale": 48,
+  "frameworks": [
+    "solid",
+    "vue-vapor"
+  ],
+  "entry": "main.tsx",
+  "actions": [
+    "noop"
+  ],
+  "warmup": 1,
+  "max_settle": 120,
+  "description": "静态嵌套链深 48：量的是 native 侧的树深轴（MAX_TREE_DEPTH=64）。三变体都用自底向上的循环构造而不是递归组件——设备真实的 QuickJS 栈（JS_SetMaxStackSize 256 KB）下递归组件 16 层就 stack overflow，JS 调用深度必须与树深解耦。已知上游边界：Octane 在该栈上任何写法都挂不出 48 深的链（递归 ≤16、动态子链 ≤8、字面量嵌套触发解析器/plan 走查溢出），目前只在大栈 oracle 上跑；Solid 与 Vue Vapor 在 shell 上 48 深验证通过。noop 标定噪声底。Octane 不参与：其编译产物在 256 KB 设备栈上挂不出深链——递归组件 ≤16 层溢出、循环链 8 层溢出、字面量嵌套 12 层运行期溢出 / 48 层解析溢出，最优写法上限约 8–11 层，是一条已记录的设备边界"
+}

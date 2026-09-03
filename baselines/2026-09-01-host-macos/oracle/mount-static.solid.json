@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "bundle": "mount-static.solid",
+  "name": "mount-static",
+  "framework": "solid",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:55.996Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "9c7be965aa27a996",
+      "fb_rgba8": "390eac78"
+    },
+    "metrics": {
+      "hostops_total": 809,
+      "hostops_by_type": {
+        "loadFontAtlas": 3,
+        "loadStyles": 1,
+        "createNode": 265,
+        "setProp": 12,
+        "insertBefore": 265,
+        "setText": 81,
+        "setStyle": 182
+      },
+      "boundary_calls": 809,
+      "nodes_created": 265,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "noop",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "9c7be965aa27a996",
+        "fb_rgba8": "390eac78"
+      },
+      "metrics": {
+        "hostops_total": 0,
+        "hostops_by_type": {},
+        "boundary_calls": 0,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "noop",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "9c7be965aa27a996",
+        "fb_rgba8": "390eac78"
+      },
+      "metrics": {
+        "hostops_total": 0,
+        "hostops_by_type": {},
+        "boundary_calls": 0,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    }
+  ]
+}

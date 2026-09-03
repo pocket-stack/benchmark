@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "bundle": "soak-churn.vue-vapor",
+  "name": "soak-churn",
+  "framework": "vue-vapor",
+  "kind": "case",
+  "generated": "2026-09-01T10:42:02.480Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "35ccb1bf36fcdada",
+      "fb_rgba8": "0e216ece"
+    },
+    "metrics": {
+      "hostops_total": 34,
+      "hostops_by_type": {
+        "loadFontAtlas": 3,
+        "loadStyles": 1,
+        "createNode": 7,
+        "setProp": 11,
+        "insertBefore": 7,
+        "setText": 2,
+        "setStyle": 3
+      },
+      "boundary_calls": 34,
+      "nodes_created": 7,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "churn",
+      "iteration": "first",
+      "settle_frames": 600,
+      "settled": true,
+      "hashes": {
+        "drawlist": "35ccb1bf36fcdada",
+        "fb_rgba8": "0e216ece"
+      },
+      "metrics": {
+        "hostops_total": 1379800,
+        "hostops_by_type": {
+          "createNode": 420000,
+          "setText": 180000,
+          "insertBefore": 420000,
+          "setStyle": 240000,
+          "removeChild": 60000,
+          "destroyNode": 59800
+        },
+        "boundary_calls": 1379800,
+        "nodes_created": 420000,
+        "nodes_destroyed": 59800
+      }
+    },
+    {
+      "action": "churn",
+      "iteration": "steady",
+      "settle_frames": 600,
+      "settled": true,
+      "hashes": {
+        "drawlist": "35ccb1bf36fcdada",
+        "fb_rgba8": "0e216ece"
+      },
+      "metrics": {
+        "hostops_total": 1380000,
+        "hostops_by_type": {
+          "destroyNode": 60000,
+          "createNode": 420000,
+          "setText": 180000,
+          "insertBefore": 420000,
+          "setStyle": 240000,
+          "removeChild": 60000
+        },
+        "boundary_calls": 1380000,
+        "nodes_created": 420000,
+        "nodes_destroyed": 60000
+      }
+    }
+  ]
+}

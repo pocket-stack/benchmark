@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "bundle": "soak-churn.solid",
+  "name": "soak-churn",
+  "framework": "solid",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:56.982Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "35ccb1bf36fcdada",
+      "fb_rgba8": "0e216ece"
+    },
+    "metrics": {
+      "hostops_total": 32,
+      "hostops_by_type": {
+        "loadFontAtlas": 3,
+        "loadStyles": 1,
+        "createNode": 6,
+        "setProp": 12,
+        "insertBefore": 6,
+        "setText": 1,
+        "setStyle": 3
+      },
+      "boundary_calls": 32,
+      "nodes_created": 6,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "churn",
+      "iteration": "first",
+      "settle_frames": 600,
+      "settled": true,
+      "hashes": {
+        "drawlist": "35ccb1bf36fcdada",
+        "fb_rgba8": "0e216ece"
+      },
+      "metrics": {
+        "hostops_total": 1380000,
+        "hostops_by_type": {
+          "createNode": 420000,
+          "setText": 180000,
+          "insertBefore": 420000,
+          "setStyle": 240000,
+          "removeChild": 60000,
+          "destroyNode": 60000
+        },
+        "boundary_calls": 1380000,
+        "nodes_created": 420000,
+        "nodes_destroyed": 60000
+      }
+    },
+    {
+      "action": "churn",
+      "iteration": "steady",
+      "settle_frames": 600,
+      "settled": true,
+      "hashes": {
+        "drawlist": "35ccb1bf36fcdada",
+        "fb_rgba8": "0e216ece"
+      },
+      "metrics": {
+        "hostops_total": 1380000,
+        "hostops_by_type": {
+          "createNode": 420000,
+          "setText": 180000,
+          "insertBefore": 420000,
+          "setStyle": 240000,
+          "removeChild": 60000,
+          "destroyNode": 60000
+        },
+        "boundary_calls": 1380000,
+        "nodes_created": 420000,
+        "nodes_destroyed": 60000
+      }
+    }
+  ]
+}

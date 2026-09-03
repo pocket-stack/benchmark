@@ -1,0 +1,12 @@
+{
+  "id": "reactive-single",
+  "family": "reactive",
+  "track": "canonical",
+  "scale": 1,
+  "frameworks": ["solid", "vue-vapor", "octane"],
+  "entry": "main.tsx",
+  "actions": ["set", "same-value", "set-back"],
+  "warmup": 1,
+  "max_settle": 120,
+  "description": "一个 signal / ref / state 驱动一个 Text：set 改成 B，same-value 再写一次 B（不应产生 HostOps），set-back 改回 A"
+}

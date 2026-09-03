@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "bundle": "deep-tree.vue-vapor",
+  "name": "deep-tree",
+  "framework": "vue-vapor",
+  "kind": "case",
+  "generated": "2026-09-01T10:41:53.218Z",
+  "hz": 60,
+  "viewport": [
+    480,
+    272
+  ],
+  "mount": {
+    "action": "mount",
+    "iteration": "first",
+    "settle_frames": 1,
+    "settled": true,
+    "hashes": {
+      "drawlist": "2d33a67a51056b37",
+      "fb_rgba8": "11c4bef0"
+    },
+    "metrics": {
+      "hostops_total": 318,
+      "hostops_by_type": {
+        "loadFontAtlas": 2,
+        "loadStyles": 1,
+        "createNode": 102,
+        "setProp": 11,
+        "insertBefore": 102,
+        "setText": 50,
+        "setStyle": 50
+      },
+      "boundary_calls": 318,
+      "nodes_created": 102,
+      "nodes_destroyed": 0
+    }
+  },
+  "actions": [
+    {
+      "action": "noop",
+      "iteration": "first",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2d33a67a51056b37",
+        "fb_rgba8": "11c4bef0"
+      },
+      "metrics": {
+        "hostops_total": 0,
+        "hostops_by_type": {},
+        "boundary_calls": 0,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    },
+    {
+      "action": "noop",
+      "iteration": "steady",
+      "settle_frames": 1,
+      "settled": true,
+      "hashes": {
+        "drawlist": "2d33a67a51056b37",
+        "fb_rgba8": "11c4bef0"
+      },
+      "metrics": {
+        "hostops_total": 0,
+        "hostops_by_type": {},
+        "boundary_calls": 0,
+        "nodes_created": 0,
+        "nodes_destroyed": 0
+      }
+    }
+  ]
+}
