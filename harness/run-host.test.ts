@@ -71,7 +71,7 @@ describe("run-host fold", () => {
     const caseArgs = shellArgs(BUNDLE, "measure", "/tmp/out.jsonl");
     expect(caseArgs).toEqual([
       "--mode", "full", "--observer", "measure", "--js", "/dev/null", "--pak", "/dev/null", "--hz", "60", "--out", "/tmp/out.jsonl",
-      "--bench", "--warmup", "1", "--max-settle", "120",
+      "--bench", "--actions", "create,clear", "--warmup", "1", "--max-settle", "120",
     ]);
     const appArgs = shellArgs({ ...BUNDLE, kind: "app", case: null, tape: { frames: 96, input: "0:0,58:0x40" } }, "observe", "/tmp/o.jsonl");
     expect(appArgs.slice(-4)).toEqual(["--frames", "96", "--input", "0:0,58:0x40"]);

@@ -13,7 +13,7 @@
 //     会加一条测试把 OP_ARG_LAYOUT 的键集与 OP 表比对。
 //   - hash 分两种：framebuffer 用 FNV-1a 32（与 hosts/sim/sim.ts、tools/tape.ts 一致，才能和
 //     oracle 逐帧比）；DrawList 用 core 的 ui_draw_hash（FNV-1a 64 over words 的 LE 字节，
-//     engine/wasm 与 engine/symbian 同一实现）；头部里的 bundle / pak / styles / atlas 身份
+//     engine/wasm 与 engine/ui-cabi 同一实现）；头部里的 bundle / pak / styles / atlas 身份
 //     hash 用 FNV-1a 64（与 hosts/psp/build.rs 一致）。
 
 import { OP, SCREEN_H, SCREEN_W } from "../vendor/pocketjs/contracts/spec/spec.ts";

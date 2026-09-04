@@ -1,7 +1,7 @@
 /*
  * shell/pb.h — C declarations of crates/pocket-bench's ABI (see its lib.rs).
  * The ui_* ops, ui_init / ui_set_viewport / ui_tick and friends come from
- * pocket_core.h (engine/symbian's ABI, re-exported by the same staticlib).
+ * pocket_ui_cabi.h (engine/ui-cabi's ABI, re-exported by the same staticlib).
  */
 #ifndef PB_H
 #define PB_H

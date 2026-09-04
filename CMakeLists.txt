@@ -24,7 +24,9 @@ endif()
 
 set(POCKET_ROOT "${CMAKE_CURRENT_SOURCE_DIR}")
 set(POCKET_SHELL_DIR "${POCKET_ROOT}/shell")
-set(POCKET_SOFT_DIR "${POCKET_ROOT}/vendor/pocketjs/hosts/soft")
+set(POCKET_RUNTIME_DIR "${POCKET_ROOT}/vendor/pocketjs/engine/quickjs-c")
+set(POCKET_UI_CABI_DIR "${POCKET_ROOT}/vendor/pocketjs/engine/ui-cabi")
+set(POCKET_GENERATED_CONTRACT_DIR "${POCKET_ROOT}/vendor/pocketjs/contracts/generated")
 set(POCKET_QUICKJS_DIR "${POCKET_ROOT}/vendor/quickjs-rs/libquickjs-sys/embed/quickjs")
 set(POCKET_CRATE_DIR "${POCKET_ROOT}/crates/pocket-bench")
 
@@ -35,7 +37,14 @@ function(pocket_require_file path)
 endfunction()
 
 function(pocket_configure_shell_object target)
-  target_include_directories("${target}" PRIVATE "${POCKET_SHELL_DIR}" "${POCKET_SOFT_DIR}")
+  target_include_directories(
+    "${target}"
+    PRIVATE
+      "${POCKET_SHELL_DIR}"
+      "${POCKET_RUNTIME_DIR}"
+      "${POCKET_UI_CABI_DIR}/include"
+      "${POCKET_GENERATED_CONTRACT_DIR}"
+  )
   target_include_directories("${target}" SYSTEM PRIVATE "${POCKET_QUICKJS_DIR}")
   target_compile_options("${target}" PRIVATE -std=c99 -Wall -Wextra -fwrapv)
   target_compile_definitions(
@@ -43,7 +52,8 @@ function(pocket_configure_shell_object target)
     PRIVATE
       POCKETJS_TARGET_ID="bench"
       POCKETJS_HOST_ABI=0
-      POCKET_RUNTIME_BENCH_HOOKS
+      POCKET_RUNTIME_STAGE_HOOKS
+      POCKET_RUNTIME_HARNESS
       PB_QUICKJS_VERSION="${POCKET_QUICKJS_VERSION}"
   )
   if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
@@ -62,7 +72,7 @@ if(POCKET_BUILD_SHELL)
   endif()
 
   pocket_require_file("${POCKET_QUICKJS_DIR}/VERSION")
-  pocket_require_file("${POCKET_SOFT_DIR}/pocket_runtime.c")
+  pocket_require_file("${POCKET_RUNTIME_DIR}/pocket_runtime.c")
   pocket_require_file("${POCKET_CRATE_DIR}/Cargo.toml")
   file(STRINGS "${POCKET_QUICKJS_DIR}/VERSION" POCKET_QUICKJS_VERSION LIMIT_COUNT 1)
   string(STRIP "${POCKET_QUICKJS_VERSION}" POCKET_QUICKJS_VERSION)
@@ -131,7 +141,7 @@ if(POCKET_BUILD_SHELL)
     "${POCKET_SHELL_DIR}/vtime.c"
     "${POCKET_MARKS_SOURCE}"
     "${POCKET_SHELL_DIR}/jsglue.c"
-    "${POCKET_SOFT_DIR}/rust_eh_personality.c"
+    "${POCKET_RUNTIME_DIR}/rust_eh_personality.c"
   )
   pocket_configure_shell_object(pocket-shell-common)
 
@@ -141,7 +151,7 @@ if(POCKET_BUILD_SHELL)
   endfunction()
 
   function(pocket_add_runtime_object target)
-    add_library("${target}" OBJECT "${POCKET_SOFT_DIR}/pocket_runtime.c")
+    add_library("${target}" OBJECT "${POCKET_RUNTIME_DIR}/pocket_runtime.c")
     pocket_configure_shell_object("${target}")
     target_compile_options("${target}" PRIVATE "-include${POCKET_SHELL_DIR}/runtime_overrides.h")
   endfunction()

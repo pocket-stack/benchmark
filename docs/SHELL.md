@@ -1,6 +1,6 @@
 # bench shell
 
-`shell/` 是一份 C 源码、两种构建（host / so3）、两种 observer（measure / observe），运行时层来自 `vendor/pocketjs/hosts/soft/pocket_runtime.c`，core 来自 `crates/pocket-bench`（`pocketjs-symbian-core` 的 C ABI 加 bench 扩展）。
+`shell/` 是一份 C 源码、两种构建（host / so3）、两种 observer（measure / observe），运行时层来自 `vendor/pocketjs/engine/quickjs-c/pocket_runtime.c`，core 来自 `crates/pocket-bench`（`pocketjs-ui-cabi` 加 bench 扩展）。
 
 ## 命令行
 
@@ -11,8 +11,8 @@ pocket-bench-shell
   --js app.js --pak app.pak            full / guest-tape
   --tape in.pkmt                       guest-tape：查询的应答来源；native：回放输入
   --dltape in.pkdl                     raster：回放输入
-  --bench [--actions a,b,c]            用 globalThis.__bench 驱动（case 协议）；action 列表默认从
-                                       __bench.actions 读，给了 --actions 则校验相等
+  --bench --actions a,b,c              用构建时注入的 typed dispatcher 驱动 globalThis.__bench；
+                                       action 列表必须来自 case.json，并与 bundle 内身份校验
   --frames N --input "f:mask,..."      用输入 tape 驱动（宏场景；与 tools/soft.ts 同一格式）
   --warmup K --max-settle M            协议参数（默认 1 / 120）
   --record-tape out.pkmt               observe：录 MutationTape（含 eval 期的 op）
@@ -22,6 +22,9 @@ pocket-bench-shell
   --out results.jsonl                  默认 stdout
   --hz 60 --width 480 --height 272     目前只支持 60（pocket_runtime_tick 每帧一个 tick）
 ```
+
+`guest-tape` 重放带 ACTION 记录的 case tape 时也要传同一份 `--actions`；普通输入 tape
+没有 ACTION，不需要 dispatcher 或 action 列表。
 
 当前状态：四种模式全部可用并各自验证过。`full` 与 oracle 逐 action 相等；`native` 回放录制 tape 得到与 `full` 相同的 DrawList / fb hash、返回值 0 次不等；`guest-tape` 在 `pocket-bench-shell-guest` 二进制上锁步匹配整条 tape（op 码、每个参数字、帧边界；任何分歧退出 5），两种录制都支持：输入 tape 驱动的宏 app，以及 bench 协议的 case——observe 录制在每次 `run()` 前写一条 ACTION 记录，重放按"消费 FRAME 后再 eval run()"的原始顺序重新发起；`raster` 需要 `--tape`（精确：回放 MutationTape 的 op 与 tick 重建纹理 / atlas，再做一次不计时的 draw 物化 draw 期资源）或 `--pak`（近似），配合 tape 里的基底帧（半透明 op 沿帧历史混合，DrawListTape 记录最后一帧渲染前的累积画面），逐字节复现 `full` 的最终帧。
 
@@ -57,7 +60,7 @@ pocket-bench-shell
 | `render` | `pb_render_rgba8()`：DrawList → framebuffer |
 | `verify` | hash、post()、录制、输出（不计时） |
 
-host 构建的段边界读 `CLOCK_THREAD_CPUTIME_ID`（macOS 用 `thread_info` 的 user+system 时间）；so3 构建打寄存器 marker。`pocket_runtime.c` 用 `POCKET_RUNTIME_BENCH_HOOKS` 编译时暴露 js / jobs / tick 三段的边界（`pocket_bench_stage(stage)`），draw 与 render 由 shell 自己调用 `pb_draw` / `pb_render_rgba8`，绕过 `pocket_runtime_render` 的增量路径——bench 的基线是全帧光栅，damage 属于 backend 层。
+host 构建的段边界读 `CLOCK_THREAD_CPUTIME_ID`（macOS 用 `thread_info` 的 user+system 时间）；so3 构建打寄存器 marker。`pocket_runtime.c` 用 `POCKET_RUNTIME_STAGE_HOOKS` 编译时暴露 eval / js / jobs / tick 边界（`pocket_bench_stage(stage)`），并用独立的 `POCKET_RUNTIME_HARNESS` 提供缓存 dispatcher 的整数调用。draw 与 render 由 shell 自己调用 `pb_draw` / `pb_render_rgba8`，绕过 `pocket_runtime_render` 的增量路径——bench 的基线是全帧光栅，damage 属于 backend 层。
 
 ## 输出
 

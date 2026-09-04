@@ -293,7 +293,15 @@ export function shellArgs(bundle: BundleEntry, observer: Observer, jsonlPath: st
   const args = ["--mode", "full", "--observer", observer, "--js", bundle.js, "--pak", bundle.pak, "--hz", "60", "--out", jsonlPath];
   if (bundle.kind === "case") {
     const manifest = bundle.case!;
-    args.push("--bench", "--warmup", String(manifest.warmup), "--max-settle", String(manifest.max_settle));
+    args.push(
+      "--bench",
+      "--actions",
+      manifest.actions.join(","),
+      "--warmup",
+      String(manifest.warmup),
+      "--max-settle",
+      String(manifest.max_settle),
+    );
   } else {
     const tape = bundle.tape ?? { frames: 90, input: "" };
     args.push("--frames", String(tape.frames));

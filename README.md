@@ -26,8 +26,9 @@ bun harness/report.ts                      # Markdown 表：settle、六段 cpu_
 bun run test                               # spec / harness / corpus / plugin / cases 的测试
 ```
 
-`vendor/pocketjs` 当前指向 HalfSweet/pocketjs 的公开 `feat/soft-host` 分支；其中包含
-`hosts/soft/` 与 bench hook。相关改动合并上游后再把 submodule URL 切回 pocket-stack。
+`vendor/pocketjs` 当前指向基于官方 main 的公开 harness PR 分支；其中包含
+`engine/quickjs-c` 的阶段/dispatcher hook 与 `engine/ui-cabi` 的受限访问器。PR 合并后再把
+submodule URL 切回 pocket-stack。
 
 ## 目录
 
@@ -37,7 +38,7 @@ cases/       canonical micro case（10 个场景：mount-static、deep-tree、re
 harness/     build / oracle / run-host / run-ref / compare / report（Bun）
 shell/       bench shell：main.c、arena、vtime、marks、record + generated/（由 spec 生成）
 cmake/       SO3 ARM32/AArch64 toolchain；顶层 CMakeLists.txt 与 presets 是唯一 C 构建入口
-crates/      pocket-bench：symbian-core 的 C ABI + replayer + DrawList words + RGBA8 光栅
+crates/      pocket-bench：ui-cabi + replayer + DrawList words + RGBA8 光栅
 corpus/      中立 MutationTape 生成器与已生成的 10 条 .pkmt
 plugin/      QEMU TCG plugin（真 QEMU 冒烟通过，aarch64 + arm32；smoke/ 可一键重跑）
 ref/         digest 锁定的单一 reference backend 与 QEMU/SO3 固化流程

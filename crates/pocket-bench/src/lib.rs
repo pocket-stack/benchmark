@@ -33,8 +33,14 @@ mod tape_spec;
 use alloc::collections::BTreeMap;
 use alloc::vec::Vec;
 use pocketjs_core::{raster, Ui};
-use pocketjs_symbian_core::with_ui;
+use pocketjs_symbian_core::with_initialized_ui_unchecked;
 use tape_spec as ts;
+
+fn with_bench_ui<R>(f: impl FnOnce(&mut Ui) -> R) -> R {
+    // The C shell is single-threaded. It initializes and shuts down the C ABI
+    // outside these calls, and none of the closures re-enter an ui_* symbol.
+    unsafe { with_initialized_ui_unchecked(f) }.expect("benchmark UI is not initialized")
+}
 
 /// C ABI version; the shell compares it with the value it was compiled against.
 pub const PB_ABI_VERSION: u32 = 1;
@@ -65,7 +71,7 @@ pub unsafe extern "C" fn pb_draw(out_ptr: *mut *const u32, out_len: *mut usize) 
     if out_ptr.is_null() || out_len.is_null() {
         return PB_ERR_ARGS;
     }
-    with_ui(|ui| {
+    with_bench_ui(|ui| {
         let list = ui.draw();
         *out_ptr = list.words.as_ptr();
         *out_len = list.words.len();
@@ -95,7 +101,7 @@ pub extern "C" fn pb_framebuffer_len(scale: u32) -> usize {
     if !(1..=raster::MAX_RENDER_SCALE).contains(&scale) {
         return 0;
     }
-    with_ui(|ui| {
+    with_bench_ui(|ui| {
         let (w, h) = ui.viewport();
         (w as usize) * (h as usize) * (scale as usize) * (scale as usize) * 4
     })
@@ -115,7 +121,7 @@ pub unsafe extern "C" fn pb_render_rgba8(
     }
     let words = slice_u32(words, len);
     let fb = core::slice::from_raw_parts_mut(fb, fb_len);
-    with_ui(|ui| raster::render_scaled(ui, words, fb, scale));
+    with_bench_ui(|ui| raster::render_scaled(ui, words, fb, scale));
     0
 }
 
@@ -133,7 +139,7 @@ pub unsafe extern "C" fn pb_load_pak(pak: *const u8, len: usize) -> i32 {
     }
     let bytes = core::slice::from_raw_parts(pak, len);
     let mut fed = 0i32;
-    with_ui(|ui| {
+    with_bench_ui(|ui| {
         for entry in pocketjs_core::pak::entries(bytes) {
             let key = entry.key;
             let blob = entry.blob;
@@ -178,7 +184,7 @@ pub unsafe extern "C" fn pb_load_pak(pak: *const u8, len: usize) -> i32 {
 
 #[no_mangle]
 pub extern "C" fn pb_tick(count: u32) {
-    with_ui(|ui| {
+    with_bench_ui(|ui| {
         for _ in 0..count {
             ui.tick();
         }
@@ -188,7 +194,7 @@ pub extern "C" fn pb_tick(count: u32) {
 /// `Ui::set_tick_rate`; must run before the first tick. Returns 0 or PB_ERR_STATE.
 #[no_mangle]
 pub extern "C" fn pb_set_tick_rate(hz: u32) -> i32 {
-    if with_ui(|ui| ui.set_tick_rate(hz)) {
+    if with_bench_ui(|ui| ui.set_tick_rate(hz)) {
         0
     } else {
         PB_ERR_STATE
@@ -642,7 +648,7 @@ pub unsafe extern "C" fn pb_replay_next(out: *mut PbFrame) -> i32 {
     if out.is_null() {
         return PB_ERR_ARGS;
     }
-    let result = with_ui(|ui| replay_frame(replay, ui, out));
+    let result = with_bench_ui(|ui| replay_frame(replay, ui, out));
     match result {
         Ok(true) => 1,
         Ok(false) => 0,

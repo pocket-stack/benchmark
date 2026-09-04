@@ -15,6 +15,12 @@ globalThis.__bench = {
 };
 ```
 
+`harness/build.ts` 在 case bundle 末尾追加一个只接受两个 `int32` 的 dispatcher adapter。
+adapter 在构建时固化 case id、action 顺序及 action hash，启动后验证 `__bench`，再把
+`ready / actionCount / actionHash / run / post / hasReset / reset` 整数 opcode 映射到上面的
+对象。C shell 通过 `pocket_runtime_harness_bind/call` 缓存并调用该函数；不会拼接或 eval
+JS 源码，也不会让 PocketJS runtime 知道这些 opcode 的含义。
+
 - `run(action)` 在该 action 第一帧的 `frame()` **之前**、同一个 `js` 段内被调用。它只发起变化（写 signal / ref / state），不等待任何东西。
 - `post(action)` 在每帧 render **之后**被询问。它读自己的状态回答"完成了没有"——例如列表长度是否到了 1000、文本是否已是目标值。不要在 `post` 里改状态。
 - `reset()` 可选。有它的 case 才能 `warmup > 0`：warmup 跑完整个 action 列表后调一次 `reset()`，再正式计时。
@@ -61,6 +67,9 @@ steady：对每个 action 再跑一遍（iteration = "steady"）；没有 reset 
 }
 ```
 
+action 名必须唯一、不能使用保留名 `mount`，并限制为 1–127 个不含逗号的可打印 ASCII
+字符；这样同一份列表可以无歧义地通过 `--actions` 传给 C shell。
+
 ## 目录与构建
 
 ```
@@ -75,7 +84,7 @@ cases/<id>/
 
 变体文件名遵守 `vendor/pocketjs/tools/build.ts` 的规则：请求 `X.tsx` 时按框架换成 `X.vue-vapor.tsx` / `X.octane.tsx`，不存在则用原文件。产物名是 `<id>.js`、`<id>.vue-vapor.js`、`<id>.octane.js`。
 
-case 的 import 与主仓 app 完全一样（`@pocketjs/framework/components`、`solid-js`、`vue`、`octane`……）。为了让这些裸标识符解析到 **submodule 自己的** `node_modules`（只能有一份 `solid-js`），`harness/build.ts` 先把 case 目录复制到 `vendor/pocketjs/.pocket-build/bench-cases/<id>/`（该目录被 submodule 的 `.gitignore` 忽略），再对复制件调用 `tools/build.ts`。case 源码里不要写依赖复制位置的相对路径。
+case 的 import 与主仓 app 完全一样（`@pocketjs/framework/components`、`solid-js`、`vue`、`octane`……）。为了让这些裸标识符解析到 **submodule 自己的** `node_modules`（只能有一份 `solid-js`），`harness/build.ts` 先把 case 目录复制到 `vendor/pocketjs/.pocket-build/bench-cases/<id>/`（该目录被 submodule 的 `.gitignore` 忽略），再对复制件调用 `tools/build.ts`，最后追加上述 dispatcher。case 源码里不要写依赖复制位置的相对路径。
 
 ## canonical 场景标准
 

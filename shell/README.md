@@ -2,7 +2,7 @@
 
 The shell combines:
 
-- vendor/pocketjs/hosts/soft/pocket_runtime.c for QuickJS embedding and HostOps;
+- vendor/pocketjs/engine/quickjs-c/pocket_runtime.c for QuickJS embedding and HostOps;
 - the five Bellard QuickJS C sources pinned by vendor/quickjs-rs;
 - crates/pocket-bench for tape replay, DrawList access and RGBA8 rasterization;
 - main.c for drivers, stage boundaries and JSONL output;
@@ -15,6 +15,11 @@ The action protocol lives in main.c. vtime.c shadows gettimeofday so Date.now()
 and the QuickJS random seed see deterministic frame time. Host stage timing uses
 CLOCK_THREAD_CPUTIME_ID on Linux and thread_info on macOS; QEMU builds emit
 register markers instead of reading a clock.
+
+Canonical case bundles carry a build-injected integer dispatcher. The shell
+binds it once and calls opcodes for run/post/reset; no action path evaluates JS
+source strings. `--actions` comes from case.json and is checked against the
+bundle's embedded count and per-name hashes before measurement starts.
 
 ## Build products
 

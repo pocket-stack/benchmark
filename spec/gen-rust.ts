@@ -93,7 +93,7 @@ export function generateRust(): string {
   put("/// DrawListTape header word offsets.");
   headerOffsets(DRAWLIST_TAPE_HEADER, "DL", put);
   put();
-  put("/// Stage ids: 0-4 match POCKET_BENCH_STAGE_* in hosts/soft/pocket_runtime.h.");
+  put("/// Stage ids: 0-4 match POCKET_BENCH_STAGE_* in engine/quickjs-c/pocket_runtime.h.");
   for (const [name, id] of STAGES) put(`pub const STAGE_${name}: u32 = ${id};`);
   put(`pub const STAGE_COUNT: usize = ${STAGES.length};`);
   put();

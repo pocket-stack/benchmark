@@ -78,6 +78,10 @@ bundle 在 globalThis.__bench 暴露：
 - post(action)；
 - 可选 reset()。
 
+case bundle 构建后追加 typed dispatcher；C shell 只传整数 opcode/action index，adapter
+负责验证 case id 与 action hash 并映射到 run/post/reset。PocketJS runtime 缓存 dispatcher
+函数，但不知道 benchmark opcode 语义，也不执行动态 JS 源码。
+
 每个 action 依次执行 js、jobs、tick、draw、render、verify。post 返回 true时立即 settle；
 否则 framebuffer hash 连续两次与上一帧相同即 settle；达到 max_settle 仍不稳定则记录失败。
 frames 和 stable 每个 action 清零，上一帧 hash 跨 action 保留。
@@ -176,4 +180,4 @@ bootstrap；从空目录产生这些底层输入留在后续可复现流水线�
 3. 扩充 lifecycle、async、input、focus、hitTest 和 layout-affecting animation；
 4. 如需要设备像素格式观测，再设计 RGB565 输出字段、oracle 与 baseline 后接入，
    不保留无消费者的半套 ABI；
-5. 将 vendor/pocketjs 的 soft-host 分支合并上游，并把 submodule URL 切回 pocket-stack。
+5. 待 PocketJS harness PR 合并后，把 submodule URL 切回 pocket-stack。

@@ -12,7 +12,16 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSy
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import type { CaseManifest } from "../spec/protocol.ts";
-import { DEFAULT_MAX_SETTLE, DEFAULT_WARMUP, STABLE_FRAMES } from "../spec/protocol.ts";
+import {
+  BENCH_HARNESS_GLOBAL,
+  BENCH_HARNESS_MOUNT_INDEX,
+  BENCH_HARNESS_OP,
+  BENCH_PROTOCOL_VERSION,
+  DEFAULT_MAX_SETTLE,
+  DEFAULT_WARMUP,
+  MOUNT_ACTION,
+  STABLE_FRAMES,
+} from "../spec/protocol.ts";
 
 // ---------------------------------------------------------------------------
 // 路径
@@ -210,6 +219,15 @@ export function readCaseManifest(dir: string): ResolvedCase {
   if (typeof manifest.entry !== "string" || !manifest.entry) fail("entry must name the entry file (e.g. main.tsx)");
   if (!existsSync(join(dir, manifest.entry))) fail(`entry ${manifest.entry} does not exist`);
   if (!Array.isArray(manifest.actions) || manifest.actions.length === 0) fail("actions must be a non-empty array");
+  const actions = new Set<string>();
+  for (const action of manifest.actions) {
+    if (typeof action !== "string" || action.length > 127 || !/^[\x20-\x7e]+$/.test(action) || action.includes(",")) {
+      fail("actions must be 1-127 printable ASCII characters without commas");
+    }
+    if (action === MOUNT_ACTION) fail(`action ${JSON.stringify(MOUNT_ACTION)} is reserved`);
+    if (actions.has(action)) fail(`action ${JSON.stringify(action)} is duplicated`);
+    actions.add(action);
+  }
   if (manifest.scale !== undefined && (!Number.isInteger(manifest.scale) || manifest.scale <= 0)) fail("scale must be a positive integer");
   const warmup = manifest.warmup ?? DEFAULT_WARMUP;
   const maxSettle = manifest.max_settle ?? DEFAULT_MAX_SETTLE;
@@ -228,6 +246,48 @@ export function listCases(): string[] {
   return readdirSync(CASES)
     .filter((name) => existsSync(join(CASES, name, "case.json")))
     .sort();
+}
+
+/**
+ * Appended to canonical case bundles after PocketJS build output. The native
+ * runtime only transports two int32 arguments and one int32 result; this
+ * adapter owns all knowledge of globalThis.__bench and validates the manifest
+ * captured at build time before accepting a command.
+ */
+export function benchHarnessAdapterSource(manifest: Pick<CaseManifest, "id" | "actions">): string {
+  const actionHashes = manifest.actions.map((action) => Number.parseInt(fnv1a32(new TextEncoder().encode(action)), 16) >>> 0);
+  return `
+;(() => {
+  const bench = globalThis.__bench;
+  const expectedActions = ${JSON.stringify(manifest.actions)};
+  const actionHashes = ${JSON.stringify(actionHashes)};
+  const ready = !!bench && bench.version === ${BENCH_PROTOCOL_VERSION} && bench.case === ${JSON.stringify(manifest.id)} &&
+    Array.isArray(bench.actions) && bench.actions.length === expectedActions.length &&
+    expectedActions.every((action, index) => bench.actions[index] === action);
+  globalThis[${JSON.stringify(BENCH_HARNESS_GLOBAL)}] = (opcode, argument) => {
+    if (!ready) return -1;
+    switch (opcode | 0) {
+      case ${BENCH_HARNESS_OP.ready}: return ${BENCH_PROTOCOL_VERSION};
+      case ${BENCH_HARNESS_OP.actionCount}: return expectedActions.length;
+      case ${BENCH_HARNESS_OP.actionHash}: return actionHashes[argument] ?? -1;
+      case ${BENCH_HARNESS_OP.run}:
+        if (!Number.isInteger(argument) || argument < 0 || argument >= expectedActions.length) return -1;
+        bench.run(expectedActions[argument]);
+        return 0;
+      case ${BENCH_HARNESS_OP.post}:
+        if (argument === ${BENCH_HARNESS_MOUNT_INDEX}) return bench.post(${JSON.stringify(MOUNT_ACTION)}) ? 1 : 0;
+        if (!Number.isInteger(argument) || argument < 0 || argument >= expectedActions.length) return -1;
+        return bench.post(expectedActions[argument]) ? 1 : 0;
+      case ${BENCH_HARNESS_OP.hasReset}: return typeof bench.reset === "function" ? 1 : 0;
+      case ${BENCH_HARNESS_OP.reset}:
+        if (typeof bench.reset !== "function") return -1;
+        bench.reset();
+        return 0;
+      default: return -1;
+    }
+  };
+})();
+`;
 }
 
 // ---------------------------------------------------------------------------

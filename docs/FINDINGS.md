@@ -31,7 +31,7 @@ soak-churn（每帧交替创建 200 行 / 清空，共 600 帧）在 Bellard Qui
 
 第二轮比第一轮慢 4 倍，与"滞留的订阅让每次 flush 扫描量单调增长"一致——滞留不只是内存问题，也是时间问题。
 
-- 复现：`dist/shell/host/pocket-bench-shell --mode full --js dist/bundles/soak-churn.vue-vapor.js --pak dist/bundles/soak-churn.vue-vapor.pak --bench --warmup 0 --max-settle 1300 --out /tmp/soak.jsonl`，看 action 记录里的 `js_malloc_bytes` / `js_peak_bytes`。
+- 复现：`dist/shell/host/pocket-bench-shell --mode full --js dist/bundles/soak-churn.vue-vapor.js --pak dist/bundles/soak-churn.vue-vapor.pak --bench --actions churn --warmup 0 --max-settle 1300 --out /tmp/soak.jsonl`，看 action 记录里的 `js_malloc_bytes` / `js_peak_bytes`。
 - 嫌疑面：Vue Vapor 的 scheduler / 依赖清理在 `renderer-vue-vapor.ts` 适配路径上的滞留；待最小化并提上游。
 
 ## 3. 设备栈边界：256 KB QuickJS 栈下的组件深度

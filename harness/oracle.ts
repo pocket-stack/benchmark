@@ -163,6 +163,7 @@ async function evalBundle(bundle: BundleEntry, wasmBytes: ArrayBuffer): Promise<
   g.__pak = await Bun.file(bundle.pak).arrayBuffer();
   g.frame = undefined;
   g.__bench = undefined;
+  g.__pocketHarnessDispatch = undefined;
   (0, eval)(await Bun.file(bundle.js).text());
   const frame = g.frame as FrameFn | undefined;
   if (typeof frame !== "function") {
@@ -187,6 +188,7 @@ function releaseBundle(): void {
   delete g.__pak;
   g.frame = undefined;
   g.__bench = undefined;
+  g.__pocketHarnessDispatch = undefined;
 }
 
 async function runCase(bundle: BundleEntry, world: World, bench: BenchCase | undefined): Promise<Pick<OracleFile, "mount" | "actions">> {

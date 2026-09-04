@@ -92,7 +92,7 @@
 #define PB_DL_ATLAS_HASHES_OFFSET 20 /* atlas_count × u64 */
 #define PB_DL_FIXED_WORDS 20
 
-/* Stage ids: 0-4 match POCKET_BENCH_STAGE_* in hosts/soft/pocket_runtime.h. */
+/* Stage ids: 0-4 match POCKET_BENCH_STAGE_* in engine/quickjs-c/pocket_runtime.h. */
 #define PB_STAGE_IDLE 0
 #define PB_STAGE_EVAL 1
 #define PB_STAGE_JS 2
@@ -102,6 +102,18 @@
 #define PB_STAGE_RENDER 6
 #define PB_STAGE_VERIFY 7
 #define PB_STAGE_COUNT 8
+
+/* Bundle-local typed harness dispatcher (spec/protocol.ts). */
+#define PB_HARNESS_GLOBAL "__pocketHarnessDispatch"
+#define PB_HARNESS_PROTOCOL_VERSION 1
+#define PB_HARNESS_MOUNT_INDEX (-1)
+#define PB_HARNESS_READY 0
+#define PB_HARNESS_ACTION_COUNT 1
+#define PB_HARNESS_ACTION_HASH 2
+#define PB_HARNESS_RUN 3
+#define PB_HARNESS_POST 4
+#define PB_HARNESS_HAS_RESET 5
+#define PB_HARNESS_RESET 6
 
 /* Recorded ops: layout chars i=i32 u=u32 f=f32 d=f64 s=str b=blob; ret_kind < 0 = no RET record. */
 typedef struct {

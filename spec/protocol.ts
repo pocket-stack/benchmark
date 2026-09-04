@@ -8,6 +8,21 @@ import type { Iteration, Stage } from "./results.ts";
 
 export const BENCH_PROTOCOL_VERSION = 1;
 
+/** Bundle-local typed dispatcher installed by harness/build.ts for canonical cases. */
+export const BENCH_HARNESS_GLOBAL = "__pocketHarnessDispatch";
+export const BENCH_HARNESS_MOUNT_INDEX = -1;
+
+/** Integer protocol carried by pocket_runtime_harness_call(opcode, argument). */
+export const BENCH_HARNESS_OP = {
+  ready: 0,
+  actionCount: 1,
+  actionHash: 2,
+  run: 3,
+  post: 4,
+  hasReset: 5,
+  reset: 6,
+} as const;
+
 /** mount 阶段用的保留 action 名；case 的 post("mount") 可以直接返回 true。 */
 export const MOUNT_ACTION = "mount";
 
@@ -41,6 +56,8 @@ export interface BenchCase {
 declare global {
   // eslint-disable-next-line no-var
   var __bench: BenchCase | undefined;
+  // eslint-disable-next-line no-var
+  var __pocketHarnessDispatch: ((opcode: number, argument: number) => number) | undefined;
 }
 
 /** cases/<id>/case.json。 */
@@ -85,7 +102,7 @@ export interface PhaseRecord {
   kind: "phase";
   action: string;
   iteration: Iteration | "warmup";
-  /** eval 段记 -1。 */
+  /** 启动期的 eval / jobs 段记 -1。 */
   frame: number;
   stage: Stage;
   cpu_us: number;

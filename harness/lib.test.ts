@@ -1,6 +1,22 @@
 import { describe, expect, test } from "bun:test";
-import { STABLE_FRAMES } from "../spec/protocol.ts";
-import { beginAction, expandTape, fnv1a32, fnv1a64, newSettleState, parseArgs, settleStep, u64hex } from "./lib.ts";
+import {
+  BENCH_HARNESS_GLOBAL,
+  BENCH_HARNESS_MOUNT_INDEX,
+  BENCH_HARNESS_OP,
+  BENCH_PROTOCOL_VERSION,
+  STABLE_FRAMES,
+} from "../spec/protocol.ts";
+import {
+  beginAction,
+  benchHarnessAdapterSource,
+  expandTape,
+  fnv1a32,
+  fnv1a64,
+  newSettleState,
+  parseArgs,
+  settleStep,
+  u64hex,
+} from "./lib.ts";
 
 const bytes = (s: string): Uint8Array => new TextEncoder().encode(s);
 
@@ -16,6 +32,47 @@ describe("hashes", () => {
   test("u64hex wraps and pads", () => {
     expect(u64hex(0n)).toBe("0000000000000000");
     expect(u64hex(-1n)).toBe("ffffffffffffffff");
+  });
+});
+
+describe("typed guest harness adapter", () => {
+  test("validates the manifest and dispatches integer commands", () => {
+    let current = "idle";
+    globalThis.__bench = {
+      version: 1,
+      case: "adapter-test",
+      actions: ["go", "back"],
+      run(action) {
+        current = action;
+      },
+      post(action) {
+        return action === "mount" || current === action;
+      },
+      reset() {
+        current = "idle";
+      },
+    };
+    try {
+      (0, eval)(benchHarnessAdapterSource({ id: "adapter-test", actions: ["go", "back"] }));
+      const dispatch = globalThis[BENCH_HARNESS_GLOBAL]!;
+      expect(dispatch(BENCH_HARNESS_OP.ready, 0)).toBe(BENCH_PROTOCOL_VERSION);
+      expect(dispatch(BENCH_HARNESS_OP.actionCount, 0)).toBe(2);
+      expect(dispatch(BENCH_HARNESS_OP.actionHash, 0) >>> 0).toBe(Number.parseInt(fnv1a32(bytes("go")), 16));
+      expect(dispatch(BENCH_HARNESS_OP.post, BENCH_HARNESS_MOUNT_INDEX)).toBe(1);
+      expect(dispatch(BENCH_HARNESS_OP.run, 0)).toBe(0);
+      expect(dispatch(BENCH_HARNESS_OP.post, 0)).toBe(1);
+      expect(dispatch(BENCH_HARNESS_OP.hasReset, 0)).toBe(1);
+      expect(dispatch(BENCH_HARNESS_OP.reset, 0)).toBe(0);
+      expect(current).toBe("idle");
+      expect(dispatch(BENCH_HARNESS_OP.run, 99)).toBe(-1);
+      expect(dispatch(99, 0)).toBe(-1);
+
+      (0, eval)(benchHarnessAdapterSource({ id: "wrong-case", actions: ["go", "back"] }));
+      expect(globalThis[BENCH_HARNESS_GLOBAL]!(BENCH_HARNESS_OP.ready, 0)).toBe(-1);
+    } finally {
+      delete globalThis.__bench;
+      delete globalThis.__pocketHarnessDispatch;
+    }
   });
 });
 

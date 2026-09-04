@@ -26,6 +26,7 @@ import {
   type BundleEntry,
   type BundleIndex,
   type Framework,
+  benchHarnessAdapterSource,
   bundleName,
   ensureDir,
   flagList,
@@ -131,6 +132,10 @@ async function main(): Promise<void> {
       const name = bundleName(target.name, framework);
       console.log(`${LABEL}: ${name}`);
       const built = buildOne(target, framework);
+      if (manifest !== null) {
+        const source = await Bun.file(built.js).text();
+        await Bun.write(built.js, `${source}${benchHarnessAdapterSource(manifest)}`);
+      }
       const js = join(BUNDLES, `${name}.js`);
       const pak = join(BUNDLES, `${name}.pak`);
       copyFileSync(built.js, js);

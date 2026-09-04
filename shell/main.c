@@ -17,7 +17,7 @@
  * output is JSON lines (spec/protocol.ts ShellRecord).
  */
 
-#include "pocket_core.h"
+#include "pocket_ui_cabi.h"
 #include "pocket_runtime.h"
 #include "pocket_spec.h"
 
@@ -368,46 +368,6 @@ static int parse_options(int argc, char **argv) {
   return 1;
 }
 
-static int eval_int(const char *format, const char *action, int32_t *result);
-
-/* Read globalThis.__bench.actions through the int32 eval hook, one code
- * unit at a time — a few dozen evals once per run, before any timing. */
-static void bench_load_actions(void) {
-  int32_t count = 0;
-  int32_t i;
-  size_t total = 0;
-  size_t at = 0;
-  if (!eval_int("globalThis.__bench.actions.length%s", "", &count)) fail_runtime(3, "__bench.actions");
-  if (count <= 0 || count > PB_MAX_ACTIONS) fail(3, "__bench.actions is empty or too long");
-  for (i = 0; i < count; ++i) {
-    int32_t length = 0;
-    char index[16];
-    snprintf(index, sizeof(index), "%d", (int)i);
-    if (!eval_int("globalThis.__bench.actions[%s].length", index, &length)) fail_runtime(3, "__bench.actions");
-    if (length <= 0 || length > 128) fail(3, "an action name is empty or longer than 128");
-    total += (size_t)length + 1;
-  }
-  options.actions_buffer = (char *)malloc(total);
-  if (options.actions_buffer == NULL) fail(4, "out of memory");
-  for (i = 0; i < count; ++i) {
-    int32_t length = 0;
-    int32_t j;
-    char index[16];
-    snprintf(index, sizeof(index), "%d", (int)i);
-    eval_int("globalThis.__bench.actions[%s].length", index, &length);
-    options.actions[options.action_count++] = options.actions_buffer + at;
-    for (j = 0; j < length; ++j) {
-      int32_t code = 0;
-      char probe[48];
-      snprintf(probe, sizeof(probe), "%d].charCodeAt(%d)", (int)i, (int)j);
-      if (!eval_int("globalThis.__bench.actions[%s", probe, &code)) fail_runtime(3, "__bench.actions");
-      if (code <= 0 || code > 126) fail(3, "action names must be printable ASCII");
-      options.actions_buffer[at++] = (char)code;
-    }
-    options.actions_buffer[at++] = '\0';
-  }
-}
-
 /* ---- output records ------------------------------------------------------- */
 
 static void emit_identity(void) {
@@ -521,51 +481,69 @@ static void emit_action(
 
 /* ---- guest protocol helpers ---------------------------------------------- */
 
-static int eval_int(const char *format, const char *action, int32_t *result) {
-  char source[512];
-  int written = snprintf(source, sizeof(source), format, action);
-  if (written < 0 || written >= (int)sizeof(source)) fail(1, "action name too long");
-  return pocket_runtime_eval_int32(source, (size_t)written, result);
+static int bench_bound;
+
+static void bench_bind(void) {
+  if (bench_bound) return;
+  if (!pocket_runtime_harness_bind(PB_HARNESS_GLOBAL)) fail_runtime(3, "harness bind");
+  bench_bound = 1;
+}
+
+static int32_t bench_call(int32_t opcode, int32_t argument, const char *what) {
+  int32_t result = 0;
+  bench_bind();
+  if (!pocket_runtime_harness_call(opcode, argument, &result)) fail_runtime(3, what);
+  return result;
+}
+
+static int32_t bench_action_index(const char *action) {
+  size_t i;
+  if (strcmp(action, PB_MOUNT_ACTION) == 0) return PB_HARNESS_MOUNT_INDEX;
+  for (i = 0; i < options.action_count; ++i) {
+    if (strcmp(options.actions[i], action) == 0) return (int32_t)i;
+  }
+  fail(3, "action is not declared by --actions");
+  return -1;
 }
 
 static void bench_run(const char *action) {
-  if (!eval_int("globalThis.__bench.run(\"%s\"), 0", action, NULL)) fail_runtime(3, "__bench.run");
+  if (bench_call(PB_HARNESS_RUN, bench_action_index(action), "harness run") != 0) {
+    fail(3, "bundle harness rejected run");
+  }
 }
 
 static int bench_post(const char *action) {
-  int32_t value = 0;
-  if (!eval_int("globalThis.__bench.post(\"%s\") ? 1 : 0", action, &value)) fail_runtime(3, "__bench.post");
+  int32_t value = bench_call(PB_HARNESS_POST, bench_action_index(action), "harness post");
+  if (value != 0 && value != 1) fail(3, "bundle harness returned an invalid post result");
   return value != 0;
 }
 
 static int bench_has_reset(void) {
-  int32_t value = 0;
-  if (!eval_int("typeof globalThis.__bench%s.reset === \"function\" ? 1 : 0", "", &value)) fail_runtime(3, "__bench.reset");
+  int32_t value = bench_call(PB_HARNESS_HAS_RESET, 0, "harness hasReset");
+  if (value != 0 && value != 1) fail(3, "bundle harness returned an invalid hasReset result");
   return value != 0;
 }
 
 static void bench_reset(void) {
-  if (!eval_int("globalThis.__bench%s.reset(), 0", "", NULL)) fail_runtime(3, "__bench.reset");
+  if (bench_call(PB_HARNESS_RESET, 0, "harness reset") != 0) {
+    fail(3, "bundle harness rejected reset");
+  }
 }
 
 static void bench_check(void) {
-  int32_t value = 0;
-  if (!eval_int("(globalThis.__bench && globalThis.__bench.version === 1) ? 1 : 0", "", &value)) fail_runtime(3, "__bench");
-  if (!value) fail(3, "bundle did not install globalThis.__bench v1 (docs/PROTOCOL.md)");
-  if (options.action_count == 0) {
-    bench_load_actions();
-  } else {
-    char joined[2048];
-    size_t i;
-    size_t at = 0;
-    joined[0] = '\0';
-    for (i = 0; i < options.action_count; ++i) {
-      int written = snprintf(joined + at, sizeof(joined) - at, "%s%s", i == 0 ? "" : ",", options.actions[i]);
-      if (written < 0 || (size_t)written >= sizeof(joined) - at) fail(1, "--actions too long");
-      at += (size_t)written;
-    }
-    if (!eval_int("globalThis.__bench.actions.join(\",\") === \"%s\" ? 1 : 0", joined, &value)) fail_runtime(3, "__bench.actions");
-    if (!value) fail(3, "--actions does not match globalThis.__bench.actions");
+  int32_t value;
+  size_t i;
+  if (options.action_count == 0) fail(3, "--bench requires --actions from case.json");
+  value = bench_call(PB_HARNESS_READY, 0, "harness ready");
+  if (value != PB_HARNESS_PROTOCOL_VERSION) {
+    fail(3, "bundle harness adapter rejected globalThis.__bench");
+  }
+  value = bench_call(PB_HARNESS_ACTION_COUNT, 0, "harness actionCount");
+  if (value != (int32_t)options.action_count) fail(3, "--actions count does not match the bundle");
+  for (i = 0; i < options.action_count; ++i) {
+    uint32_t expected = fnv1a32((const uint8_t *)options.actions[i], strlen(options.actions[i]));
+    value = bench_call(PB_HARNESS_ACTION_HASH, (int32_t)i, "harness actionHash");
+    if ((uint32_t)value != expected) fail(3, "--actions does not match the bundle");
   }
   if (options.warmup > 0 && !bench_has_reset()) fail(3, "warmup > 0 but __bench has no reset()");
 }
@@ -771,6 +749,7 @@ static void boot_guest(void) {
 #endif
   emit_identity();
   emit_phase(PB_MOUNT_ACTION, "first", -1, PB_STAGE_EVAL, pb_marks_stage_us(PB_STAGE_EVAL));
+  emit_phase(PB_MOUNT_ACTION, "first", -1, PB_STAGE_JOBS, pb_marks_stage_us(PB_STAGE_JOBS));
 }
 
 #if defined(PB_GUEST_TAPE)

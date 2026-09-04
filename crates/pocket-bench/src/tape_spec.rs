@@ -89,7 +89,7 @@ pub const DL_ATLAS_COUNT: usize = 19;
 pub const DL_ATLAS_HASHES_OFFSET: usize = 20; // atlas_count × u64
 pub const DL_FIXED_WORDS: usize = 20;
 
-/// Stage ids: 0-4 match POCKET_BENCH_STAGE_* in hosts/soft/pocket_runtime.h.
+/// Stage ids: 0-4 match POCKET_BENCH_STAGE_* in engine/quickjs-c/pocket_runtime.h.
 pub const STAGE_IDLE: u32 = 0;
 pub const STAGE_EVAL: u32 = 1;
 pub const STAGE_JS: u32 = 2;

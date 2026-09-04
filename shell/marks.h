@@ -1,6 +1,6 @@
 /*
  * shell/marks.h — stage boundaries. pocket_runtime.c (compiled with
- * POCKET_RUNTIME_BENCH_HOOKS) and main.c call pb_marks_stage() at every
+ * POCKET_RUNTIME_STAGE_HOOKS) and main.c call pb_marks_stage() at every
  * phase edge; the host build attributes thread CPU time to the stage that
  * just ended, the SO3 build emits the plugin's marker instruction.
  */
