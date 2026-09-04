@@ -1,0 +1,87 @@
+# Immutable SO3/QEMU reference backend. The image deliberately contains only
+# stable infrastructure: QEMU + pocketcount, both cross toolchains, the pinned
+# Rust toolchain, and one verified boot base per profile. Repository sources,
+# corpus tapes, and result files are supplied by the caller.
+FROM debian:trixie@sha256:f324c7ff54321e8d9c588493a20244965938ce0aa50bbd1022d38010e9ffc4b1
+
+ARG QEMU_VERSION=10.0.11
+ARG QEMU_DEBIAN_VERSION=1:10.0.11+ds-0+deb13u1
+ARG RUST_TOOLCHAIN=nightly-2026-07-02
+ARG SO3_COMMIT=e37b1c2a45429bdb5018fc55f748a27f189bc479
+ARG VCS_REF=unknown
+
+ENV CARGO_HOME=/opt/cargo \
+    RUSTUP_HOME=/opt/rustup \
+    POCKET_REF_BACKEND_ROOT=/opt/ref \
+    POCKET_SO3_CC_AARCH64=/opt/toolchains/aarch64-linux-musl/bin/aarch64-linux-musl-gcc \
+    POCKET_SO3_CC_ARM32=/opt/toolchains/arm-linux-musleabihf/bin/arm-linux-musleabihf-gcc
+ENV PATH="/opt/cargo/bin:/opt/toolchains/aarch64-linux-musl/bin:/opt/toolchains/arm-linux-musleabihf/bin:${PATH}"
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+      qemu-system-arm=${QEMU_DEBIAN_VERSION} \
+      qemu-system-common=${QEMU_DEBIAN_VERSION} \
+      qemu-system-data=${QEMU_DEBIAN_VERSION} \
+      ca-certificates curl gcc libc6-dev libglib2.0-dev cmake ninja-build \
+      pkg-config python3 mtools u-boot-tools device-tree-compiler \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+      | sh -s -- -y --profile minimal --default-toolchain "${RUST_TOOLCHAIN}" \
+    && rustup target add --toolchain "${RUST_TOOLCHAIN}" \
+      aarch64-unknown-linux-musl armv7-unknown-linux-musleabihf \
+    && cargo +"${RUST_TOOLCHAIN}" --version
+
+# Avoid rustup's channel refresh when the image is run as the caller's uid.
+ENV RUSTUP_TOOLCHAIN="${RUST_TOOLCHAIN}"
+
+ADD toolchains.tar /opt/toolchains/
+
+WORKDIR /src
+COPY CMakeLists.txt ./CMakeLists.txt
+COPY plugin/pocketcount.c ./plugin/pocketcount.c
+RUN cmake -S /src -B /tmp/pocketcount-build -G Ninja \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DPOCKET_BUILD_SHELL=OFF \
+      -DPOCKET_BUILD_PLUGIN=ON \
+      -DPOCKET_QEMU_VERSION=${QEMU_VERSION} \
+      -DPOCKET_PLUGIN_OUTPUT_DIRECTORY=/opt/pocketcount \
+    && cmake --build /tmp/pocketcount-build --target pocketcount \
+    && qemu-system-aarch64 --version | grep -F "version ${QEMU_VERSION}" \
+    && "${POCKET_SO3_CC_AARCH64}" --version >/dev/null \
+    && "${POCKET_SO3_CC_ARM32}" --version >/dev/null
+
+COPY --from=base32 /rootfs.fat /opt/ref/virt32/rootfs.fat
+COPY --from=base32 /sdcard.img /opt/ref/virt32/sdcard.img
+COPY --from=base32 /u-boot /opt/ref/virt32/u-boot
+COPY --from=base32 /resolved.its /opt/ref/virt32/resolved.its
+COPY --from=kernel32 /so3.bin /opt/ref/virt32/so3.bin
+COPY --from=kernel32 /virt32.dtb /opt/ref/virt32/virt32.dtb
+
+COPY --from=base64 /rootfs.fat /opt/ref/virt64/rootfs.fat
+COPY --from=base64 /sdcard.img /opt/ref/virt64/sdcard.img
+COPY --from=base64 /u-boot /opt/ref/virt64/u-boot
+COPY --from=base64 /resolved.its /opt/ref/virt64/resolved.its
+COPY --from=kernel64 /so3.bin /opt/ref/virt64/so3.bin
+COPY --from=kernel64 /virt64.dtb /opt/ref/virt64/virt64.dtb
+
+COPY ref/so3/virt32_bench_defconfig /opt/ref/virt32/bench_defconfig
+COPY ref/so3/virt64_bench_defconfig /opt/ref/virt64/bench_defconfig
+COPY ref/create-backend-manifest.py /usr/local/libexec/create-backend-manifest.py
+RUN python3 /usr/local/libexec/create-backend-manifest.py \
+      --root /opt/ref \
+      --so3-commit "${SO3_COMMIT}" \
+      --qemu-version "${QEMU_VERSION}" \
+      --rust-toolchain "${RUST_TOOLCHAIN}" \
+      --plugin /opt/pocketcount/libpocketcount.so \
+      --out /opt/ref/backend.json \
+    && rm /usr/local/libexec/create-backend-manifest.py \
+    && chmod -R a+rX /opt/ref
+
+LABEL org.opencontainers.image.title="PocketJS benchmark reference backend" \
+      org.opencontainers.image.description="Pinned SO3 boot bases, cross toolchains, QEMU and pocketcount" \
+      org.opencontainers.image.source="https://github.com/pocket-stack/benchmark" \
+      org.opencontainers.image.revision="${VCS_REF}"
+
+WORKDIR /repo
+CMD ["bash"]

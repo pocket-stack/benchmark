@@ -129,6 +129,11 @@ pocketcount 根据 ELF link map 把 PC 分为 quickjs、core、raster、libc、s
 kernel 或 other。普通 marker 更新 frame/stage；stage 8 marker 切换 run_id。
 runner 在看到 manifest 中全部 end 后主动停止 QEMU，让 plugin 写出结果。
 
+reference backend 是一个由 `ref/backend.lock.json` 锁定 digest 的 GHCR image。
+它包含 QEMU/plugin、两套编译工具链与两个经过 hash 校验的 SO3 boot base；当前
+checkout 的 shell 与 corpus 每次重新构建、注入。它不是服务，CI 也不依赖跨运行
+保存的 Actions artifact。
+
 确定性只比较非 idle 数据。idle 包含 boot、进程间工作和停止前空转。verify 是全帧 hash，
 单独报告但不作为 workload 成本。详见 ref/README.md 与 plugin/README.md。
 
@@ -154,14 +159,15 @@ runner 在看到 manifest 中全部 end 后主动停止 QEMU，让 plugin 写出
 - host measure/observe 结果与各自 oracle 并排记录；
 - virt32/virt64 在固定 QEMU 10.0.11 上完成 10 tape × 2；
 - pocketcount v2 的 run ownership、marker 和非 idle 确定性已验证；
-- compare、report、host baseline 与 GitHub Actions host job 可用。
+- compare、report、host baseline、GitHub Actions host job 与非门禁 reference
+  matrix 均可用。
 
 已发现的问题记录在 docs/FINDINGS.md。
 
 ## 10. 后续工作
 
 1. 固化从空目录构建 SO3 userland、U-Boot、rootfs 与基础 sdcard 的流水线；
-2. 为 QEMU reference 建立独立、非门禁的 CI job 与当前 schema baseline；
+2. 为 QEMU reference 建立当前 schema 的可比较 baseline；
 3. 扩充 lifecycle、async、input、focus、hitTest 和 layout-affecting animation；
 4. 如需要设备像素格式观测，再设计 RGB565 输出字段、oracle 与 baseline 后接入，
    不保留无消费者的半套 ABI；

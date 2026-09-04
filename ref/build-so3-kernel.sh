@@ -2,7 +2,7 @@
 # Build only the SO3 kernel/dtb for a committed benchmark defconfig.
 # Run inside the SO3 build environment with both trees mounted, for example:
 #   docker run --rm --platform linux/amd64 -v "$SO3":/so3 -v "$PWD":/repo:ro \
-#     -w /so3 ghcr.io/smartobjectoriented/so3-env@<digest-from-ref/README.md> \
+#     -w /so3 ghcr.io/smartobjectoriented/so3-env@sha256:b9affbe7e2375bb70fe5fb5267c30ff4d115d58d0ede89d90d943c882503714f \
 #     /repo/ref/build-so3-kernel.sh --profile virt32 --so3 /so3 --out /so3/pocketjs-artifacts/kernel-virt32
 set -euo pipefail
 

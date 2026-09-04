@@ -6,6 +6,7 @@ set -euo pipefail
 
 profile=""
 so3_root=""
+base=""
 shell=""
 corpus=""
 out=""
@@ -21,6 +22,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --profile) profile="$2"; shift 2 ;;
     --so3) so3_root="$2"; shift 2 ;;
+    --base) base="$2"; shift 2 ;;
     --shell) shell="$2"; shift 2 ;;
     --corpus) corpus="$2"; shift 2 ;;
     --out) out="$2"; shift 2 ;;
@@ -36,22 +38,101 @@ done
 
 case "$profile" in
   virt32|virt64) ;;
-  *) echo "usage: prepare-corpus.sh --profile virt32|virt64 --so3 TREE --shell ELF --corpus DIR --out DIR [--rootfs F --sdcard F --uboot F --its F --kernel F --dtb F]" >&2; exit 2 ;;
+  *) echo "usage: prepare-corpus.sh --profile virt32|virt64 (--base DIR | --so3 TREE) --shell ELF --corpus DIR --out DIR [--rootfs F --sdcard F --uboot F --its F --kernel F --dtb F]" >&2; exit 2 ;;
 esac
-if [ -z "$so3_root" ] || [ -z "$shell" ] || [ -z "$corpus" ] || [ -z "$out" ]; then
-  echo "prepare-corpus: --so3, --shell, --corpus and --out are required" >&2
+if [ -z "$shell" ] || [ -z "$corpus" ] || [ -z "$out" ]; then
+  echo "prepare-corpus: --shell, --corpus and --out are required" >&2
+  exit 2
+fi
+if { [ -z "$base" ] && [ -z "$so3_root" ]; } || { [ -n "$base" ] && [ -n "$so3_root" ]; }; then
+  echo "prepare-corpus: choose exactly one of --base and --so3" >&2
+  exit 2
+fi
+if [ -n "$base" ] && { [ -n "$rootfs" ] || [ -n "$sdcard" ] || [ -n "$uboot" ] || [ -n "$its" ] || [ -n "$kernel" ] || [ -n "$dtb" ]; }; then
+  echo "prepare-corpus: --base cannot be combined with individual media overrides" >&2
   exit 2
 fi
 
-rootfs="${rootfs:-$so3_root/so3/rootfs/rootfs.fat}"
-sdcard="${sdcard:-$so3_root/filesystem/sdcard.img.$profile}"
-uboot="${uboot:-$so3_root/u-boot/u-boot}"
-its="${its:-$so3_root/build/meta-bsp/recipes-bsp/so3/files/its/${profile}_so3.its}"
-kernel="${kernel:-$so3_root/so3/so3/so3.bin}"
-dtb="${dtb:-$so3_root/so3/so3/dts/${profile}.dtb}"
 index="$corpus/index.json"
 bench_config="$script_dir/so3/${profile}_bench_defconfig"
-so3_commit="$(git -C "$so3_root" rev-parse HEAD 2>/dev/null || true)"
+base_manifest_sha256=""
+if [ -n "$base" ]; then
+  rootfs="$base/rootfs.fat"
+  sdcard="$base/sdcard.img"
+  uboot="$base/u-boot"
+  its="$base/resolved.its"
+  kernel="$base/so3.bin"
+  dtb="$base/${profile}.dtb"
+  base_manifest="$base/base.json"
+  test -f "$base_manifest" || { echo "prepare-corpus: missing $base_manifest" >&2; exit 1; }
+  base_identity="$(python3 - "$base_manifest" "$base" "$profile" "$bench_config" <<'PY'
+import hashlib, json, os, sys
+
+manifest_path, base, profile, config_path = sys.argv[1:]
+manifest = json.load(open(manifest_path))
+
+def sha(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+expected_names = {
+    "rootfs.fat",
+    "sdcard.img",
+    "u-boot",
+    "resolved.its",
+    "so3.bin",
+    f"{profile}.dtb",
+    "bench_defconfig",
+}
+if manifest.get("schema_version") != 1 or manifest.get("profile") != profile:
+    raise SystemExit(f"prepare-corpus: invalid base manifest for {profile}")
+files = manifest.get("files")
+if not isinstance(files, dict) or set(files) != expected_names:
+    raise SystemExit("prepare-corpus: base manifest has an unexpected file set")
+for name, expected in files.items():
+    if os.path.basename(name) != name:
+        raise SystemExit(f"prepare-corpus: unsafe base file name {name!r}")
+    actual = sha(os.path.join(base, name))
+    if actual != expected:
+        raise SystemExit(f"prepare-corpus: base file {name} hash {actual}, expected {expected}")
+config_hash = sha(config_path)
+if config_hash != manifest.get("bench_defconfig_sha256"):
+    raise SystemExit(
+        f"prepare-corpus: repository defconfig hash {config_hash} does not match backend "
+        f"{manifest.get('bench_defconfig_sha256')}"
+    )
+commit = manifest.get("so3_commit")
+if not isinstance(commit, str) or not commit:
+    raise SystemExit("prepare-corpus: base manifest has no SO3 commit")
+manifest_hash = sha(manifest_path)
+backend_path = os.path.normpath(os.path.join(base, "..", "backend.json"))
+if os.path.isfile(backend_path):
+    backend = json.load(open(backend_path))
+    if (
+        backend.get("schema_version") != 1
+        or backend.get("bases", {}).get(profile) != manifest_hash
+    ):
+        raise SystemExit(
+            f"prepare-corpus: {profile} base manifest is not owned by backend.json"
+        )
+print(commit, manifest_hash)
+PY
+)"
+  read -r so3_commit base_manifest_sha256 <<<"$base_identity"
+  its_root="$base"
+else
+  rootfs="${rootfs:-$so3_root/so3/rootfs/rootfs.fat}"
+  sdcard="${sdcard:-$so3_root/filesystem/sdcard.img.$profile}"
+  uboot="${uboot:-$so3_root/u-boot/u-boot}"
+  its="${its:-$so3_root/build/meta-bsp/recipes-bsp/so3/files/its/${profile}_so3.its}"
+  kernel="${kernel:-$so3_root/so3/so3/so3.bin}"
+  dtb="${dtb:-$so3_root/so3/so3/dts/${profile}.dtb}"
+  so3_commit="$(git -C "$so3_root" rev-parse HEAD 2>/dev/null || true)"
+  its_root="$so3_root"
+fi
 
 for tool in mcopy mdir mkimage python3; do
   command -v "$tool" >/dev/null || { echo "prepare-corpus: missing $tool" >&2; exit 1; }
@@ -108,7 +189,7 @@ while IFS= read -r file; do
   mcopy -o -m -i "$tmp/rootfs.fat@@1M" "$tmp/$file" ::"$file"
 done < "$tmp/tapes.list"
 
-python3 - "$its" "$tmp/resolved.its" "$so3_root" "$tmp/rootfs.fat" "$kernel" "$dtb" <<'PY'
+python3 - "$its" "$tmp/resolved.its" "$its_root" "$tmp/rootfs.fat" "$kernel" "$dtb" <<'PY'
 import re, sys
 
 source, target, so3_root, rootfs, kernel, dtb = sys.argv[1:]
@@ -174,10 +255,10 @@ cp "$tmp/commands.ini" "$out/commands.ini"
 cp "$tmp/pocket-bench-shell" "$out/pocket-bench-shell"
 cp "$index" "$out/corpus-index.json"
 
-python3 - "$profile" "$index" "$shell" "$out" "$bench_config" "$so3_commit" <<'PY'
+python3 - "$profile" "$index" "$shell" "$out" "$bench_config" "$so3_commit" "$base_manifest_sha256" <<'PY'
 import hashlib, json, os, sys
 
-profile, index_path, shell_path, out, config_path, so3_commit = sys.argv[1:]
+profile, index_path, shell_path, out, config_path, so3_commit, base_manifest_sha256 = sys.argv[1:]
 entries = json.load(open(index_path))
 
 def sha(path):
@@ -218,6 +299,8 @@ manifest = {
         )
     },
 }
+if base_manifest_sha256:
+    manifest["backend_base_sha256"] = base_manifest_sha256
 with open(os.path.join(out, "runs.json"), "w") as f:
     json.dump(manifest, f, indent=2)
     f.write("\n")

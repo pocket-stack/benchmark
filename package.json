@@ -11,11 +11,13 @@
     "oracle": "bun harness/oracle.ts",
     "run-host": "bun harness/run-host.ts",
     "run-ref": "bun harness/run-ref.ts",
-    "build-ref-tools": "sh ref/build-tools.sh",
+    "verify-ref-backend": "ref/verify-backend.sh",
+    "build-ref-tools": "ref/build-tools.sh",
+    "prepare-ref": "ref/prepare-reference.sh",
     "compare": "bun harness/compare.ts",
     "report": "bun harness/report.ts",
     "corpus": "bun corpus/generate.ts",
     "gen": "bun spec/gen-c.ts && bun spec/gen-rust.ts",
-    "test": "bun test spec harness corpus plugin cases"
+    "test": "bun test spec harness corpus plugin cases ref"
   }
 }

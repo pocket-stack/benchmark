@@ -25,6 +25,7 @@ export interface CorpusManifest {
   profile: "so3-virt32-bench" | "so3-virt64-bench";
   so3_commit?: string | null;
   bench_defconfig_sha256?: string;
+  backend_base_sha256?: string;
   shell_sha256: string;
   corpus_index_sha256: string;
   runs: CorpusRun[];
@@ -65,6 +66,17 @@ export interface SerialObservation {
   replay_mismatches: number;
 }
 
+export interface BackendLock {
+  schema_version: 1;
+  image: string;
+  platform: "linux/amd64";
+  so3_commit: string;
+  qemu_version: string;
+  rust_toolchain: string;
+  backend_manifest_sha256: string;
+  bases: Record<"virt32" | "virt64", string>;
+}
+
 interface SerialRecord {
   kind: string;
   [key: string]: unknown;
@@ -77,6 +89,31 @@ function usage(): never {
       "  --no-run validates serial-<n>.txt and counts-<n>.json already present in --out-dir",
   );
   process.exit(2);
+}
+
+export function readBackendLock(path: string): BackendLock {
+  const lock = readJson<BackendLock>(path);
+  const sha = /^[0-9a-f]{64}$/;
+  if (
+    lock.schema_version !== 1 ||
+    lock.platform !== "linux/amd64" ||
+    typeof lock.image !== "string" ||
+    !/@sha256:[0-9a-f]{64}$/.test(lock.image) ||
+    typeof lock.so3_commit !== "string" ||
+    !/^[0-9a-f]{40}$/.test(lock.so3_commit) ||
+    typeof lock.qemu_version !== "string" ||
+    typeof lock.rust_toolchain !== "string" ||
+    typeof lock.backend_manifest_sha256 !== "string" ||
+    !sha.test(lock.backend_manifest_sha256) ||
+    typeof lock.bases !== "object" ||
+    lock.bases === null ||
+    Object.keys(lock.bases).sort().join(",") !== "virt32,virt64" ||
+    !sha.test(lock.bases.virt32) ||
+    !sha.test(lock.bases.virt64)
+  ) {
+    throw new Error(LABEL + ": invalid backend lock " + path);
+  }
+  return lock;
 }
 
 export function parseSerial(path: string): SerialObservation[] {
@@ -320,7 +357,22 @@ async function main(): Promise<void> {
   const timeout = Number(args.flags.get("timeout") ?? 120);
   if (!Number.isInteger(repetitions) || repetitions < 2 || !Number.isInteger(timeout) || timeout <= 0) usage();
   const outDir = resolve(args.flags.get("out-dir") ?? join(ROOT, "results/ref", profile));
-  const image = args.flags.get("docker-image") ?? process.env.POCKET_REF_IMAGE ?? "pocketjs-bench-ref-qemu:10.0.11";
+  const explicitImage = args.flags.get("docker-image") ?? process.env.POCKET_REF_IMAGE;
+  const backendLock = explicitImage
+    ? null
+    : readBackendLock(resolve(process.env.POCKET_REF_BACKEND_LOCK ?? join(ROOT, "ref/backend.lock.json")));
+  const image = explicitImage ?? backendLock!.image;
+  if (backendLock !== null) {
+    const baseProfile = profile === "virt32-bench" ? "virt32" : "virt64";
+    if (
+      manifest.so3_commit !== backendLock.so3_commit ||
+      manifest.backend_base_sha256 !== backendLock.bases[baseProfile]
+    ) {
+      throw new Error(
+        LABEL + ": artifact base identity does not match the locked " + baseProfile + " backend",
+      );
+    }
+  }
   ensureDir(outDir);
 
   if (!args.flags.has("no-run")) {
@@ -350,6 +402,8 @@ async function main(): Promise<void> {
     bench_commit: gitHead(ROOT),
     so3_commit: manifest.so3_commit ?? null,
     bench_defconfig_sha256: manifest.bench_defconfig_sha256 ?? null,
+    backend_base_sha256: manifest.backend_base_sha256 ?? null,
+    backend_manifest_sha256: backendLock?.backend_manifest_sha256 ?? null,
     shell_sha256: manifest.shell_sha256,
     corpus_index_sha256: manifest.corpus_index_sha256,
     artifacts: manifest.artifacts,

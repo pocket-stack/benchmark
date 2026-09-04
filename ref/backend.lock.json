@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "image": "ghcr.io/pocket-stack/benchmark-ref-backend@sha256:71497f91546743991e176c6edf3567030bd8a80449637f9284cd60ea90b1902a",
+  "platform": "linux/amd64",
+  "so3_commit": "e37b1c2a45429bdb5018fc55f748a27f189bc479",
+  "qemu_version": "10.0.11",
+  "rust_toolchain": "nightly-2026-07-02",
+  "backend_manifest_sha256": "9da4d4feeef2ab6332ef7779c4e2eea13fc4ea01244316700ac14462eb62618a",
+  "bases": {
+    "virt32": "a9837d94d499852446577b224250011968c7ce7be96846bfba1e63db08525552",
+    "virt64": "01ede6c53734bb26a79bdbd0a0d4f481ebd466c2db6c9a7d52d9b0fc53c9ffa7"
+  }
+}

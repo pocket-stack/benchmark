@@ -1,43 +1,54 @@
 #!/usr/bin/env bash
-# Build both SO3 shell ELFs, their link-derived segment maps, and the pinned
-# QEMU+pocketcount runner image. Rust cross targets must already be installed.
+# Build SO3 shell ELFs and link-derived segment maps inside the repository's
+# digest-locked reference backend.
 set -euo pipefail
 
-toolchain_volume="${POCKET_REF_TOOLCHAIN_VOLUME:-pocketjs-so3-toolchains}"
-so3_env_image="${POCKET_REF_SO3_ENV_IMAGE:-ghcr.io/smartobjectoriented/so3-env@sha256:b9affbe7e2375bb70fe5fb5267c30ff4d115d58d0ede89d90d943c882503714f}"
-qemu_image="${POCKET_REF_IMAGE:-pocketjs-bench-ref-qemu:10.0.11}"
-skip_image_build="${POCKET_REF_SKIP_IMAGE_BUILD:-0}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
+lock="${POCKET_REF_BACKEND_LOCK:-$root/ref/backend.lock.json}"
+selected="both"
 
-cd "$root/crates/pocket-bench"
-cargo build --release --target aarch64-unknown-linux-musl
-cargo build --release --target armv7-unknown-linux-musleabihf
-
-docker run --rm --platform linux/amd64 \
-  -v "$root:/repo" \
-  -v "$toolchain_volume:/toolchains" \
-  -e POCKET_SO3_CC_AARCH64=/toolchains/aarch64-linux-musl/bin/aarch64-linux-musl-gcc \
-  -w /repo \
-  "$so3_env_image" \
-  sh -lc 'cmake --preset so3-aarch64 --fresh && cmake --build --preset so3-aarch64'
-
-docker run --rm --platform linux/amd64 \
-  -v "$root:/repo" \
-  -v "$toolchain_volume:/toolchains" \
-  -e POCKET_SO3_CC_ARM32=/toolchains/arm-linux-musleabihf/bin/arm-linux-musleabihf-gcc \
-  -w /repo \
-  "$so3_env_image" \
-  sh -lc 'cmake --preset so3-arm32 --fresh && cmake --build --preset so3-arm32'
-
-cd "$root"
-bun plugin/segmap.ts dist/shell/so3-aarch64/shell.map \
-  --out dist/shell/so3-aarch64/segmap.txt --kernel-base 0xffff800000000000
-bun plugin/segmap.ts dist/shell/so3-arm32/shell.map \
-  --out dist/shell/so3-arm32/segmap.txt --kernel-base 0xc0000000
-if [ "$skip_image_build" != "1" ]; then
-  docker build --pull=false -f ref/Dockerfile.qemu -t "$qemu_image" .
-else
-  docker image inspect "$qemu_image" >/dev/null
+if [ "$#" -gt 0 ]; then
+  if [ "$#" -ne 2 ] || [ "$1" != "--profile" ]; then
+    echo "usage: ref/build-tools.sh [--profile virt32|virt64]" >&2
+    exit 2
+  fi
+  selected="$2"
 fi
+case "$selected" in
+  both) profiles=(virt64 virt32) ;;
+  virt32|virt64) profiles=("$selected") ;;
+  *) echo "build-tools: profile must be virt32 or virt64" >&2; exit 2 ;;
+esac
 
-echo "build-tools: shells, segmaps and $qemu_image are ready"
+"$root/ref/verify-backend.sh" "$lock"
+image="$(python3 - "$lock" <<'PY'
+import json, sys
+print(json.load(open(sys.argv[1]))["image"])
+PY
+)"
+
+container_user="$(id -u):$(id -g)"
+cd "$root"
+for profile in "${profiles[@]}"; do
+  if [ "$profile" = virt64 ]; then
+    preset=so3-aarch64
+    shell_profile=so3-aarch64
+    kernel_base=0xffff800000000000
+  else
+    preset=so3-arm32
+    shell_profile=so3-arm32
+    kernel_base=0xc0000000
+  fi
+  docker run --rm --platform linux/amd64 \
+    --user "$container_user" \
+    -e HOME=/tmp \
+    -e CARGO_HOME=/repo/dist/ref-cargo-home \
+    -v "$root:/repo" \
+    -w /repo \
+    "$image" \
+    sh -c "cmake --preset $preset --fresh -DPOCKET_SKIP_CARGO=OFF && cmake --build --preset $preset"
+  bun plugin/segmap.ts "dist/shell/$shell_profile/shell.map" \
+    --out "dist/shell/$shell_profile/segmap.txt" --kernel-base "$kernel_base"
+done
+
+echo "build-tools: $selected SO3 shell(s) and segment map(s) are ready"

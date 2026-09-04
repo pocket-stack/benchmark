@@ -2,10 +2,37 @@ import { describe, expect, test } from "bun:test";
 import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { parseSerial, stableCounts, validateOne, type CorpusManifest, type CountsFile } from "./run-ref.ts";
+import {
+  parseSerial,
+  readBackendLock,
+  stableCounts,
+  validateOne,
+  type CorpusManifest,
+  type CountsFile,
+} from "./run-ref.ts";
 import { ROOT } from "./lib.ts";
 
 describe("run-ref", () => {
+  test("accepts only an immutable amd64 backend lock", () => {
+    const dir = mkdtempSync(join(tmpdir(), "bench-ref-"));
+    const path = join(dir, "backend.lock.json");
+    const lock = {
+      schema_version: 1,
+      image: "ghcr.io/pocket-stack/benchmark-ref-backend@sha256:" + "a".repeat(64),
+      platform: "linux/amd64",
+      so3_commit: "b".repeat(40),
+      qemu_version: "10.0.11",
+      rust_toolchain: "nightly-2026-07-02",
+      backend_manifest_sha256: "c".repeat(64),
+      bases: { virt32: "d".repeat(64), virt64: "e".repeat(64) },
+    };
+    writeFileSync(path, JSON.stringify(lock));
+    expect(readBackendLock(path)).toEqual(lock);
+
+    writeFileSync(path, JSON.stringify({ ...lock, image: "backend:latest" }));
+    expect(() => readBackendLock(path)).toThrow(/invalid backend lock/);
+  });
+
   test("parses completed logical runs out of noisy SO3 serial", () => {
     const dir = mkdtempSync(join(tmpdir(), "bench-ref-"));
     const path = join(dir, "serial.txt");

@@ -29,9 +29,10 @@ This produces:
 | pocket-bench-shell-observe | HostOps counters and optional tape recording |
 | pocket-bench-shell-guest | guest-tape mode with recorded native answers |
 
-The SO3 presets build only the measure shell. ref/build-tools.sh builds the
-Rust archives first; when invoking the presets directly, do the same and point
-the corresponding environment variable at the musl compiler:
+The SO3 presets build only the measure shell. ref/build-tools.sh runs CMake
+inside the digest-locked backend; CMake builds the Rust archive before linking.
+When invoking the presets outside that backend, provide the same Rust targets
+and point the corresponding environment variable at the musl compiler:
 
     cargo build --release --manifest-path crates/pocket-bench/Cargo.toml \
       --target armv7-unknown-linux-musleabihf

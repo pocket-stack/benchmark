@@ -1,5 +1,5 @@
 # bench.yml — CI host 层：构建 shell 与 bundle，oracle + run-host，报告为 artifact。
-# 参考机层（QEMU + SO3）等 ref/ 镜像落地后加独立 job（docs/PLAN.md §7）。
+# 参考机层（QEMU + SO3）由 ref-bench.yml 的独立、非门禁 matrix 运行。
 #
 # 注意：vendor/pocketjs 目前指向 HalfSweet/pocketjs 的 feat/soft-host；分支合并回
 # 上游后把 .gitmodules 换回 pocket-stack 并更新这里的说明。
@@ -44,7 +44,7 @@ jobs:
         run: bun spec/gen-c.ts --check && bun spec/gen-rust.ts --check
 
       - name: Unit tests
-        run: bun test spec harness corpus plugin cases
+        run: bun test spec harness corpus plugin cases ref
 
       - name: Configure the shell (measure / observe / guest)
         run: cmake --preset host

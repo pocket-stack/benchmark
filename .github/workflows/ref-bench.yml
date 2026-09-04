@@ -1,0 +1,94 @@
+# Reference-machine CI. Infrastructure errors remain hard failures; benchmark
+# observations are uploaded and reported without acting as a merge gate.
+name: reference-bench
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  reference:
+    name: ${{ matrix.profile }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: virt32
+            run_profile: virt32-bench
+            shell_profile: so3-arm32
+          - profile: virt64
+            run_profile: virt64-bench
+            shell_profile: so3-aarch64
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Authenticate to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache reference Cargo outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/ref-cargo-home
+            crates/pocket-bench/target
+          key: ref-${{ matrix.profile }}-${{ hashFiles('ref/backend.lock.json', 'crates/pocket-bench/Cargo.lock', 'vendor/pocketjs/engine/core/Cargo.lock', 'vendor/pocketjs/engine/symbian/Cargo.lock') }}
+
+      - name: Verify immutable backend
+        run: ref/verify-backend.sh
+
+      - name: Build current shell
+        run: ref/build-tools.sh --profile "${{ matrix.profile }}"
+
+      - name: Prepare current corpus
+        run: ref/prepare-reference.sh --profile "${{ matrix.profile }}"
+
+      - name: Run two complete reference observations
+        id: observation
+        continue-on-error: true
+        run: |
+          bun harness/run-ref.ts \
+            --profile "${{ matrix.run_profile }}" \
+            --artifacts "dist/ref-artifacts/${{ matrix.profile }}" \
+            --segmap "dist/shell/${{ matrix.shell_profile }}/segmap.txt"
+
+      - name: Report observation status
+        if: always()
+        run: |
+          if [ "${{ steps.observation.outcome }}" = "success" ]; then
+            echo "### ${{ matrix.run_profile }}: deterministic" >> "$GITHUB_STEP_SUMMARY"
+          elif [ "${{ steps.observation.outcome }}" = "failure" ]; then
+            echo "::warning title=${{ matrix.run_profile }} observation::The benchmark exposed a difference; inspect the uploaded serial and counts."
+            echo "### ${{ matrix.run_profile }}: difference observed" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### ${{ matrix.run_profile }}: infrastructure failed before observation" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload reference observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reference-${{ matrix.profile }}
+          path: |
+            results/ref/${{ matrix.run_profile }}/
+            dist/ref-artifacts/${{ matrix.profile }}/runs.json
+          if-no-files-found: warn
+          retention-days: 30
