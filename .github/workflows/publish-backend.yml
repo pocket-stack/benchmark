@@ -30,7 +30,6 @@ jobs:
     timeout-minutes: 60
     env:
       REGISTRY_IMAGE: ghcr.io/pocket-stack/benchmark-ref-backend
-      CANDIDATE_LOCK: ${{ runner.temp }}/backend.lock.json
       POCKET_REF_BUILDX_CACHE_FROM: type=gha,scope=reference-backend
       POCKET_REF_BUILDX_CACHE_TO: type=gha,scope=reference-backend,mode=max
 
@@ -66,6 +65,7 @@ jobs:
           seed="$(python3 -c 'import json; print(json.load(open("ref/backend.lock.json"))["image"])')"
           echo "SEED_IMAGE=$seed" >> "$GITHUB_ENV"
           echo "CANDIDATE_TAG=$REGISTRY_IMAGE:candidate" >> "$GITHUB_ENV"
+          echo "CANDIDATE_LOCK=$RUNNER_TEMP/backend.lock.json" >> "$GITHUB_ENV"
 
       - name: Build and publish candidate
         run: |
