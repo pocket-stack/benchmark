@@ -18,7 +18,8 @@ register markers instead of reading a clock.
 
 ## Build products
 
-    make -C shell host
+    cmake --preset host
+    cmake --build --preset host
 
 This produces:
 
@@ -28,13 +29,26 @@ This produces:
 | pocket-bench-shell-observe | HostOps counters and optional tape recording |
 | pocket-bench-shell-guest | guest-tape mode with recorded native answers |
 
-The SO3 targets build only the measure shell:
+The SO3 presets build only the measure shell. ref/build-tools.sh builds the
+Rust archives first; when invoking the presets directly, do the same and point
+the corresponding environment variable at the musl compiler:
 
-    make -C shell so3-arm32 SO3_CC_ARM32=/path/to/arm-linux-musleabihf-gcc
-    make -C shell so3-aarch64 SO3_CC_AARCH64=/path/to/aarch64-linux-musl-gcc
+    cargo build --release --manifest-path crates/pocket-bench/Cargo.toml \
+      --target armv7-unknown-linux-musleabihf
+    POCKET_SO3_CC_ARM32=/path/to/arm-linux-musleabihf-gcc cmake --preset so3-arm32
+    cmake --build --preset so3-arm32
+
+    cargo build --release --manifest-path crates/pocket-bench/Cargo.toml \
+      --target aarch64-unknown-linux-musl
+    POCKET_SO3_CC_AARCH64=/path/to/aarch64-linux-musl-gcc cmake --preset so3-aarch64
+    cmake --build --preset so3-aarch64
 
 ARM32 is fixed to ARMv7-A Thumb-2 hard-float. Both targets are static musl ELFs
 and emit a GNU link map used by plugin/segmap.ts.
+
+The top-level CMakeLists.txt is the only source list and flag definition.
+CMakePresets.json fixes Ninja build directories and output profiles; no
+hand-written Makefile is involved.
 
 ## Modes
 

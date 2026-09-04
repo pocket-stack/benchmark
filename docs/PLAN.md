@@ -89,6 +89,10 @@ warmup 不写入正式结果；支持 reset 的 case 在 warmup 后恢复初态�
 
 shell/main.c 是协议、四种模式和 JSONL 输出的唯一 driver：
 
+顶层 CMakeLists.txt 是唯一 C 构建图；host、so3-arm32、so3-aarch64 和 plugin
+由 CMakePresets.json 固定为独立 Ninja build tree。Cargo 仍负责 Rust staticlib，
+CMake 只声明其 target、依赖和最终链接关系。
+
 | mode | 路径 | 用途 |
 |---|---|---|
 | full | QuickJS → core → DrawList → RGBA8 | host 正式报告 |
@@ -161,4 +165,4 @@ runner 在看到 manifest 中全部 end 后主动停止 QEMU，让 plugin 写出
 3. 扩充 lifecycle、async、input、focus、hitTest 和 layout-affecting animation；
 4. 如需要设备像素格式观测，再设计 RGB565 输出字段、oracle 与 baseline 后接入，
    不保留无消费者的半套 ABI；
-5. 将 vendor/pocketjs 的 soft-host commit 推送到可由 fresh clone 获取的远端。
+5. 将 vendor/pocketjs 的 soft-host 分支合并上游，并把 submodule URL 切回 pocket-stack。

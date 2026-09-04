@@ -26,8 +26,14 @@ interface Range {
 
 export function classifyObject(file: string): Segment {
   const base = file.replace(/^.*\//, "");
-  if (/quickjs-[a-z]+\.o$|quickjs\.o$|libquickjs/.test(base)) return "quickjs";
-  if (/^(main|protocol|vtime|arena|marks(_\w+)?|record|tape_host|pocket_runtime|pocket_input|rust_eh_personality)\.o$/.test(base)) {
+  if (/^(quickjs-[a-z]+|quickjs|cutils\.c|dtoa\.c|libregexp\.c|libunicode\.c|quickjs\.c)\.o$|libquickjs/.test(base)) {
+    return "quickjs";
+  }
+  if (
+    /^(main|protocol|vtime|arena|marks(_\w+)?|record|record_ops|tape_host|tape_ops|pocket_runtime|pocket_input|rust_eh_personality)(\.c)?\.o$/.test(
+      base,
+    )
+  ) {
     return "shell";
   }
   if (/libc\.a|libm\.a|crt1\.o|crti\.o|crtn\.o|crtbegin|crtend|libgcc|musl|rcrt1|Scrt1/.test(base)) return "libc";

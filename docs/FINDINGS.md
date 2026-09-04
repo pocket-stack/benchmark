@@ -68,4 +68,4 @@ Octane 编译器按调用点键 hook，禁止 `for { useState() }`（编译期�
 
 ## 8. arm32 musl GCC 默认值不是可用的 Thumb-2 目标
 
-原 Makefile 只传 `-mthumb`，`arm-linux-musleabihf-gcc` 因缺少 CPU/FPU 约束而选择 Thumb-1 + hard-float ABI，编译 QuickJS 时失败：`sorry, unimplemented: Thumb-1 'hard-float' VFP ABI`。现在 C 侧固定 `-march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard`；`readelf -A` 验证它与 Rust `armv7-unknown-linux-musleabihf` 产物同为 ARMv7、Thumb-2、VFP register arguments，C/Rust 静态链接与 SO3 virt32 启动均已通过。
+旧构建规则只传 `-mthumb`，`arm-linux-musleabihf-gcc` 因缺少 CPU/FPU 约束而选择 Thumb-1 + hard-float ABI，编译 QuickJS 时失败：`sorry, unimplemented: Thumb-1 'hard-float' VFP ABI`。现在 CMake ARM32 toolchain 固定 `-march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard`；`readelf -A` 验证它与 Rust `armv7-unknown-linux-musleabihf` 产物同为 ARMv7、Thumb-2、VFP register arguments，C/Rust 静态链接与 SO3 virt32 启动均已通过。

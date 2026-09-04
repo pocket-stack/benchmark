@@ -10,12 +10,14 @@ PocketJS 的 benchmark 仓库。被测物是 `vendor/pocketjs`（git submodule�
 
 ## 快速开始
 
+需要 Bun 1.3.14、CMake ≥ 3.24、Ninja，以及 rustup（crate 会自动选择钉住的 nightly）。
+
 ```sh
 git submodule update --init                # vendor/pocketjs、vendor/quickjs-rs
 (cd vendor/pocketjs && bun install)        # 框架依赖只能有一份，装在 submodule 里
-bun install                                # 本仓库无 npm 依赖，装的是 Bun 的 lockfile
 
-make -C shell host                         # crates/pocket-bench（nightly）+ QuickJS + shell 两种 observer
+cmake --preset host                       # 配置 Ninja：Rust staticlib + QuickJS + 三种 shell
+cmake --build --preset host
 bun harness/build.ts --apps hero           # 全部 case × 各自声明的框架 + hero → dist/bundles/
 bun harness/oracle.ts                      # wasm oracle → results/oracle/
 bun harness/run-host.ts --shell dist/shell/host/pocket-bench-shell
@@ -24,7 +26,8 @@ bun harness/report.ts                      # Markdown 表：settle、六段 cpu_
 bun run test                               # spec / harness / corpus / plugin / cases 的测试
 ```
 
-`vendor/pocketjs` 目前指向本地分支 `feat/soft-host` 的 commit（`hosts/soft/` 与 bench hook 在那里）；该分支推送之前，fresh clone 拿不到这个 commit。
+`vendor/pocketjs` 当前指向 HalfSweet/pocketjs 的公开 `feat/soft-host` 分支；其中包含
+`hosts/soft/` 与 bench hook。相关改动合并上游后再把 submodule URL 切回 pocket-stack。
 
 ## 目录
 
@@ -33,6 +36,7 @@ spec/        tape.ts（MutationTape / DrawListTape 格式）、protocol.ts（cas
 cases/       canonical micro case（10 个场景：mount-static、deep-tree、reactive-single/-fanout/-fanin/-diamond、list-create、list-ops、animation、soak-churn）及 manifest 正式测试
 harness/     build / oracle / run-host / run-ref / compare / report（Bun）
 shell/       bench shell：main.c、arena、vtime、marks、record + generated/（由 spec 生成）
+cmake/       SO3 ARM32/AArch64 toolchain；顶层 CMakeLists.txt 与 presets 是唯一 C 构建入口
 crates/      pocket-bench：symbian-core 的 C ABI + replayer + DrawList words + RGBA8 光栅
 corpus/      中立 MutationTape 生成器与已生成的 10 条 .pkmt
 plugin/      QEMU TCG plugin（真 QEMU 冒烟通过，aarch64 + arm32；smoke/ 可一键重跑）

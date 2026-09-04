@@ -25,7 +25,10 @@ Linker script and memory map
 describe("segmap", () => {
   test("classifies objects", () => {
     expect(classifyObject("objects/quickjs-cutils.o")).toBe("quickjs");
+    expect(classifyObject("CMakeFiles/pocket-quickjs.dir/quickjs.c.o")).toBe("quickjs");
     expect(classifyObject("objects/marks_so3.o")).toBe("shell");
+    expect(classifyObject("CMakeFiles/pocket-main-measure.dir/main.c.o")).toBe("shell");
+    expect(classifyObject("CMakeFiles/pocket-runtime-measure.dir/pocket_runtime.c.o")).toBe("shell");
     expect(classifyObject("dist/libpocket_bench.a(pocket_bench-1.o)")).toBe("core");
     expect(classifyObject("/x/libc.a(memcpy.o)")).toBe("libc");
     expect(classifyObject("crt1.o")).toBe("libc");

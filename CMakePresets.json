@@ -1,0 +1,96 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 24,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      }
+    },
+    {
+      "name": "host",
+      "inherits": "base",
+      "binaryDir": "${sourceDir}/dist/cmake/host",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-O2",
+        "POCKET_BUILD_SHELL": true,
+        "POCKET_BUILD_PLUGIN": false,
+        "POCKET_SHELL_PROFILE": "host",
+        "POCKET_SKIP_CARGO": false
+      }
+    },
+    {
+      "name": "so3-arm32",
+      "inherits": "base",
+      "binaryDir": "${sourceDir}/dist/cmake/so3-arm32",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/so3-arm32.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-Os",
+        "POCKET_BUILD_SHELL": true,
+        "POCKET_BUILD_PLUGIN": false,
+        "POCKET_SHELL_PROFILE": "so3-arm32",
+        "POCKET_SKIP_CARGO": true
+      }
+    },
+    {
+      "name": "so3-aarch64",
+      "inherits": "base",
+      "binaryDir": "${sourceDir}/dist/cmake/so3-aarch64",
+      "toolchainFile": "${sourceDir}/cmake/toolchains/so3-aarch64.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_FLAGS_RELEASE": "-Os",
+        "POCKET_BUILD_SHELL": true,
+        "POCKET_BUILD_PLUGIN": false,
+        "POCKET_SHELL_PROFILE": "so3-aarch64",
+        "POCKET_SKIP_CARGO": true
+      }
+    },
+    {
+      "name": "plugin",
+      "inherits": "base",
+      "binaryDir": "${sourceDir}/dist/cmake/plugin",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "POCKET_BUILD_SHELL": false,
+        "POCKET_BUILD_PLUGIN": true
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "host",
+      "configurePreset": "host",
+      "targets": ["shell-host"]
+    },
+    {
+      "name": "so3-arm32",
+      "configurePreset": "so3-arm32",
+      "targets": ["pocket-bench-shell"]
+    },
+    {
+      "name": "so3-aarch64",
+      "configurePreset": "so3-aarch64",
+      "targets": ["pocket-bench-shell"]
+    },
+    {
+      "name": "plugin",
+      "configurePreset": "plugin",
+      "targets": ["pocketcount"]
+    },
+    {
+      "name": "plugin-check",
+      "configurePreset": "plugin",
+      "targets": ["pocketcount-check"]
+    }
+  ]
+}

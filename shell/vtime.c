@@ -22,9 +22,7 @@ void pb_vtime_set_frame(uint32_t frame) {
 
 int gettimeofday(struct timeval *tv, void *tz) {
   (void)tz;
-  if (tv != 0) {
-    tv->tv_sec = (time_t)(virtual_us / 1000000ULL);
-    tv->tv_usec = (suseconds_t)(virtual_us % 1000000ULL);
-  }
+  tv->tv_sec = (time_t)(virtual_us / 1000000ULL);
+  tv->tv_usec = (suseconds_t)(virtual_us % 1000000ULL);
   return 0;
 }

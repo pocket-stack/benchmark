@@ -4,7 +4,7 @@
 FROM debian:trixie
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      qemu-system-arm gcc binutils make curl ca-certificates python3 \
+      qemu-system-arm gcc binutils cmake ninja-build curl ca-certificates python3 \
       pkg-config libglib2.0-dev gcc-arm-linux-gnueabihf \
     && rm -rf /var/lib/apt/lists/*
 

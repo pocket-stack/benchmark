@@ -1,9 +1,8 @@
 #!/bin/sh
 # plugin/smoke/inside.sh — runs INSIDE the smoke container (see run.sh).
-# /plugin is the repo's plugin/ directory, mounted read-only. Builds the
-# plugin twice (aarch64 and arm targets share the source; QEMU loads the
-# same .so from either emulator), assembles both test kernels, runs each
-# three times (twice plain, once under -icount) and asserts the counts.
+# /repo is the repository root, mounted read-only. Builds the plugin once
+# (both QEMU system emulators load the same host .so), assembles both kernels,
+# runs each three times (twice plain, once under -icount), and checks the counts.
 set -eu
 
 WORK=/tmp/pocketcount-smoke
@@ -22,16 +21,19 @@ fi
 CC32=arm-linux-gnueabihf-gcc
 
 echo "== build plugin"
-gcc -O2 -Wall -Wextra -std=gnu11 -fPIC -shared -I/opt \
-    $(pkg-config --cflags glib-2.0) \
-    -o libpocketcount.so /plugin/pocketcount.c \
-    $(pkg-config --libs glib-2.0)
+cmake -S /repo -B "$WORK/cmake" -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DPOCKET_BUILD_SHELL=OFF \
+  -DPOCKET_BUILD_PLUGIN=ON \
+  -DPOCKET_QEMU_PLUGIN_HEADER=/opt/qemu-plugin.h \
+  -DPOCKET_PLUGIN_OUTPUT_DIRECTORY="$WORK"
+cmake --build "$WORK/cmake" --target pocketcount
 
 echo "== build kernels"
 $CC64 -nostdlib -static -Wl,--build-id=none -Wl,-Ttext=0x40080000 -Wl,-e,_start \
-      -o kernel64.elf /plugin/smoke/kernel.S
+      -o kernel64.elf /repo/plugin/smoke/kernel.S
 $CC32 -nostdlib -static -Wl,--build-id=none -Wl,-Ttext=0x40080000 -Wl,-e,_start \
-      -o kernel32.elf /plugin/smoke/kernel_arm.S
+      -o kernel32.elf /repo/plugin/smoke/kernel_arm.S
 
 run_qemu() {
   system=$1
@@ -45,7 +47,7 @@ run_qemu() {
     -semihosting \
     "$@" \
     -kernel "$kernel" \
-    -plugin "./libpocketcount.so,segmap=/plugin/smoke/segmap.txt,out=$out"
+    -plugin "./libpocketcount.so,segmap=/repo/plugin/smoke/segmap.txt,out=$out"
 }
 
 smoke_arch() {
@@ -60,7 +62,7 @@ smoke_arch() {
   echo "== [$arch] run 3 (icount)"
   run_qemu "$system" "$cpu" "$kernel" "$arch-3.json" -icount shift=0,align=off,sleep=off
   echo "== [$arch] assert"
-  python3 /plugin/smoke/assert.py --arch "$arch" "$arch-1.json" "$arch-2.json" "$arch-3.json"
+  python3 /repo/plugin/smoke/assert.py --arch "$arch" "$arch-1.json" "$arch-2.json" "$arch-3.json"
 }
 
 smoke_arch aarch64 aarch64 cortex-a53 kernel64.elf

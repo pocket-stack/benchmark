@@ -46,8 +46,11 @@ jobs:
       - name: Unit tests
         run: bun test spec harness corpus plugin cases
 
+      - name: Configure the shell (measure / observe / guest)
+        run: cmake --preset host
+
       - name: Build the shell (measure / observe / guest)
-        run: make -C shell host
+        run: cmake --build --preset host
 
       - name: Build bundles (cases × frameworks + hero)
         run: bun harness/build.ts --apps hero

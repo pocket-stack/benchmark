@@ -76,10 +76,13 @@ JSON lines，类型在 `spec/protocol.ts`：
 
 ## 构建
 
-`shell/Makefile`：
+顶层 `CMakeLists.txt` 是唯一构建定义：
 
-- `make host`：本机 `cc -O2`；QuickJS 五个 .c 来自 `vendor/quickjs-rs/libquickjs-sys/embed/quickjs`，flag 与 `vendor/pocketjs/tools/blackberry-qnx/build.sh` 一致；`crates/pocket-bench` 用其目录下的 nightly 构建 staticlib。
-- `make so3-arm32` / `make so3-aarch64`：SO3 的 musl 工具链（见 `ref/`），静态链接，`-Os`，arm32 加 `-mthumb`。
+- `cmake --preset host && cmake --build --preset host`：本机 `cc -O2`；
+  QuickJS 五个 C 文件来自钉住的 quickjs-rs，Cargo 使用 crate 自带的 nightly。
+- `so3-arm32` / `so3-aarch64` preset：SO3 musl 静态链接、`-Os`；
+  ARM32 toolchain 固定 ARMv7-A Thumb-2 hard-float。日常通过
+  `ref/build-tools.sh` 构建，直接调用方法见 `shell/README.md`。
 
 host 产物是 measure、observe 与 guest 三个 binary；SO3 target 只生成 measure
 binary。精确文件名见 `shell/README.md`。

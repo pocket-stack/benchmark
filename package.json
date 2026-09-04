@@ -6,6 +6,8 @@
   "description": "PocketJS benchmark: sim oracle, CI host shell (CPU time), QEMU + SO3 reference machines (instruction counts)",
   "scripts": {
     "build": "bun harness/build.ts",
+    "build-shell": "cmake --preset host && cmake --build --preset host",
+    "build-plugin": "cmake --preset plugin && cmake --build --preset plugin",
     "oracle": "bun harness/oracle.ts",
     "run-host": "bun harness/run-host.ts",
     "run-ref": "bun harness/run-ref.ts",

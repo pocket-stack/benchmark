@@ -16,18 +16,18 @@ cargo build --release --target armv7-unknown-linux-musleabihf
 docker run --rm --platform linux/amd64 \
   -v "$root:/repo" \
   -v "$toolchain_volume:/toolchains" \
-  -w /repo/shell \
+  -e POCKET_SO3_CC_AARCH64=/toolchains/aarch64-linux-musl/bin/aarch64-linux-musl-gcc \
+  -w /repo \
   "$so3_env_image" \
-  make so3-aarch64 SKIP_CARGO=1 \
-    SO3_CC_AARCH64=/toolchains/aarch64-linux-musl/bin/aarch64-linux-musl-gcc
+  sh -lc 'cmake --preset so3-aarch64 --fresh && cmake --build --preset so3-aarch64'
 
 docker run --rm --platform linux/amd64 \
   -v "$root:/repo" \
   -v "$toolchain_volume:/toolchains" \
-  -w /repo/shell \
+  -e POCKET_SO3_CC_ARM32=/toolchains/arm-linux-musleabihf/bin/arm-linux-musleabihf-gcc \
+  -w /repo \
   "$so3_env_image" \
-  make so3-arm32 SKIP_CARGO=1 \
-    SO3_CC_ARM32=/toolchains/arm-linux-musleabihf/bin/arm-linux-musleabihf-gcc
+  sh -lc 'cmake --preset so3-arm32 --fresh && cmake --build --preset so3-arm32'
 
 cd "$root"
 bun plugin/segmap.ts dist/shell/so3-aarch64/shell.map \

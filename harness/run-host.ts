@@ -423,7 +423,7 @@ async function main(): Promise<void> {
 
   const shell = args.flags.get("shell");
   if (!shell) usage();
-  if (!existsSync(shell)) throw new Error(`${LABEL}: shell ${shell} does not exist — build it (shell/Makefile, docs/SHELL.md)`);
+  if (!existsSync(shell)) throw new Error(`${LABEL}: shell ${shell} does not exist — build it (CMakePresets.json, docs/SHELL.md)`);
   const bundles = selectBundles(readBundleIndex(), flagList(args, "only"));
   runBundles(shell, bundles, observer, outDir);
 }

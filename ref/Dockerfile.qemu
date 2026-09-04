@@ -11,17 +11,19 @@ RUN apt-get update \
       qemu-system-arm=${QEMU_DEBIAN_VERSION} \
       qemu-system-common=${QEMU_DEBIAN_VERSION} \
       qemu-system-data=${QEMU_DEBIAN_VERSION} \
-      ca-certificates curl gcc libc6-dev libglib2.0-dev make pkg-config \
+      ca-certificates gcc libc6-dev libglib2.0-dev cmake ninja-build pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /opt/pocketcount
-RUN curl -fsSL \
-      "https://gitlab.com/qemu-project/qemu/-/raw/v${QEMU_VERSION}/include/qemu/qemu-plugin.h" \
-      -o qemu-plugin.h
-COPY plugin/pocketcount.c ./pocketcount.c
-RUN cc -O2 -Wall -Wextra -std=gnu11 -fPIC -shared \
-      -I. $(pkg-config --cflags glib-2.0) pocketcount.c \
-      -o libpocketcount.so $(pkg-config --libs glib-2.0) \
+WORKDIR /src
+COPY CMakeLists.txt ./CMakeLists.txt
+COPY plugin/pocketcount.c ./plugin/pocketcount.c
+RUN cmake -S /src -B /tmp/pocketcount-build -G Ninja \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DPOCKET_BUILD_SHELL=OFF \
+      -DPOCKET_BUILD_PLUGIN=ON \
+      -DPOCKET_QEMU_VERSION=${QEMU_VERSION} \
+      -DPOCKET_PLUGIN_OUTPUT_DIRECTORY=/opt/pocketcount \
+    && cmake --build /tmp/pocketcount-build --target pocketcount \
     && qemu-system-aarch64 --version | grep -F "version ${QEMU_VERSION}"
 
 LABEL org.opencontainers.image.title="pocketjs-bench QEMU reference runner"

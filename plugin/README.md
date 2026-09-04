@@ -12,7 +12,9 @@ arm32 同样通过（同一容器的 **qemu-system-arm 10.0.11**，`-M virt -cpu
 
 尚未验证：`observe=1` 的工作集统计、多 vCPU 告警路径、QEMU 11.1.0 header 组合（升级 QEMU 必须重跑冒烟）。
 
-**header 版本坑**：`vendor/qemu-plugin.h` 一旦存在,`make` 不会重抓（"if absent"）。树里若留着更新版本的 header（如 11.x/master,`QEMU_PLUGIN_VERSION 5`）,编出的插件在 10.0.x 上报 `plugin requires API version 5, but this QEMU supports only up to version 4` 拒载。对准运行时:删掉 `vendor/qemu-plugin.h` 后 `make QEMU_VERSION=<运行时版本>`（上游 tag `v10.0.11` 存在,header 是 API v4）。
+**header 必须与运行时匹配**：CMake 默认下载 QEMU 10.0.11 header 到隔离的
+build tree，并校验 SHA-256，不复用源码目录里的陈旧 header。切换 QEMU 时应传入
+对应的 `POCKET_QEMU_PLUGIN_HEADER`，或同时提供版本与 header SHA-256。
 
 ```
 -plugin ./libpocketcount.so,segmap=<file>,out=<json>[,observe=1]
@@ -86,12 +88,13 @@ bun plugin/segmap.ts dist/shell/so3-aarch64/shell.map --out dist/shell/so3-aarch
 ## 构建
 
 ```sh
-make                         # 拉 include/qemu/qemu-plugin.h 到 vendor/（gitignore），编 libpocketcount.so
-make check                   # 只做语法检查（macOS 也能跑，需要 glib 头）
-make QEMU_VERSION=10.2.0     # 换版本
+cmake --preset plugin
+cmake --build --preset plugin        # dist/plugin/libpocketcount.so
+cmake --build --preset plugin-check  # 只编译 object，不链接
 ```
 
-Makefile 的默认 `QEMU_VERSION` 是冒烟实测过的 **10.0.11**；`ref/` 镜像定版时把默认值改成同一版本并重跑 `sh plugin/smoke/run.sh`。
+本机配置需要 CMake、Ninja、pkg-config 和 GLib 开发头。默认 QEMU 版本是实测过的
+**10.0.11**；升级版本后必须提供匹配 header 并重跑 `sh plugin/smoke/run.sh`。
 
 `QEMU_VERSION` 必须与 `ref/` 镜像里的 QEMU 一致：plugin ABI 按版本变化（`QEMU_PLUGIN_VERSION`），QEMU 拒绝加载版本不符的 plugin。需要 QEMU ≥ 9.1（`qemu_plugin_insn_data` 的拷贝式签名、`qemu_plugin_read_register`、scoreboard API）；实测通过的组合是 10.0.11。
 

@@ -36,7 +36,7 @@
  * plugin callbacks slow QEMU down but never change the guest's instruction
  * count under -icount, which is the only thing this plugin reports.
  *
- * Build: see Makefile (needs include/qemu/qemu-plugin.h of the pinned QEMU;
+ * Build: see the top-level CMake project (needs qemu-plugin.h of the pinned QEMU;
  * qemu_plugin_read_register needs QEMU >= 9.0, the copying
  * qemu_plugin_insn_data needs >= 9.1). Validated on QEMU 10.0.11 for
  * aarch64, A32, Thumb and SO3 EL0; see README.md.
