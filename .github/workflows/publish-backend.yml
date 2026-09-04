@@ -1,0 +1,133 @@
+# Rebuild and publish the reference backend without local SO3 trees or Docker
+# volumes. Stable SO3 media/toolchains come from the current locked digest.
+name: publish-reference-backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-backend.yml"
+      - "CMakeLists.txt"
+      - "plugin/pocketcount.c"
+      - "ref/Dockerfile.backend"
+      - "ref/build-backend.sh"
+      - "ref/create-backend-manifest.py"
+      - "ref/so3/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: publish-reference-backend
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      REGISTRY_IMAGE: ghcr.io/pocket-stack/benchmark-ref-backend
+      CANDIDATE_LOCK: ${{ runner.temp }}/backend.lock.json
+      POCKET_REF_BUILDX_CACHE_FROM: type=gha,scope=reference-backend
+      POCKET_REF_BUILDX_CACHE_TO: type=gha,scope=reference-backend,mode=max
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Authenticate to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Cache validation Cargo outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/ref-cargo-home
+            crates/pocket-bench/target
+          key: backend-validate-${{ hashFiles('crates/pocket-bench/Cargo.lock', 'vendor/pocketjs/engine/core/Cargo.lock', 'vendor/pocketjs/engine/symbian/Cargo.lock') }}
+
+      - name: Resolve immutable seed
+        run: |
+          seed="$(python3 -c 'import json; print(json.load(open("ref/backend.lock.json"))["image"])')"
+          echo "SEED_IMAGE=$seed" >> "$GITHUB_ENV"
+          echo "CANDIDATE_TAG=$REGISTRY_IMAGE:candidate" >> "$GITHUB_ENV"
+
+      - name: Build and publish candidate
+        run: |
+          ref/build-backend.sh \
+            --seed "$SEED_IMAGE" \
+            --tag "$CANDIDATE_TAG" \
+            --push \
+            --lock "$CANDIDATE_LOCK"
+
+      - name: Verify candidate identity
+        run: POCKET_REF_BACKEND_LOCK="$CANDIDATE_LOCK" ref/verify-backend.sh
+
+      - name: Build current SO3 shells in candidate
+        run: POCKET_REF_BACKEND_LOCK="$CANDIDATE_LOCK" ref/build-tools.sh
+
+      - name: Prepare both current corpus images
+        run: |
+          POCKET_REF_BACKEND_LOCK="$CANDIDATE_LOCK" ref/prepare-reference.sh --profile virt32
+          POCKET_REF_BACKEND_LOCK="$CANDIDATE_LOCK" ref/prepare-reference.sh --profile virt64
+
+      - name: Validate virt32 — 10 tapes × 2
+        run: |
+          POCKET_REF_BACKEND_LOCK="$CANDIDATE_LOCK" bun harness/run-ref.ts \
+            --profile virt32-bench \
+            --artifacts dist/ref-artifacts/virt32 \
+            --segmap dist/shell/so3-arm32/segmap.txt
+
+      - name: Validate virt64 — 10 tapes × 2
+        run: |
+          POCKET_REF_BACKEND_LOCK="$CANDIDATE_LOCK" bun harness/run-ref.ts \
+            --profile virt64-bench \
+            --artifacts dist/ref-artifacts/virt64 \
+            --segmap dist/shell/so3-aarch64/segmap.txt
+
+      - name: Upload candidate observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-candidate-validation
+          path: |
+            results/ref/
+            dist/ref-artifacts/virt32/runs.json
+            dist/ref-artifacts/virt64/runs.json
+          if-no-files-found: warn
+          overwrite: true
+          retention-days: 30
+
+      - name: Commit promoted digest
+        run: |
+          cp "$CANDIDATE_LOCK" ref/backend.lock.json
+          if git diff --quiet -- ref/backend.lock.json; then
+            echo "backend lock is unchanged"
+          else
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add ref/backend.lock.json
+            git -c commit.gpgsign=false commit -m "build: promote reference backend [skip ci]"
+            git push origin HEAD:main
+          fi
+
+      - name: Move stable tag
+        run: |
+          candidate="$(python3 -c 'import json, os; print(json.load(open(os.environ["CANDIDATE_LOCK"]))["image"])')"
+          docker buildx imagetools create --tag "$REGISTRY_IMAGE:stable" "$candidate"
+          echo "### Published \`$candidate\`" >> "$GITHUB_STEP_SUMMARY"

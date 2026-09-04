@@ -10,6 +10,16 @@ function sha256(path: string): string {
 }
 
 describe("reference backend manifest", () => {
+  test("rejects a mutable backend seed before invoking Docker", () => {
+    const result = Bun.spawnSync({
+      cmd: [join(ROOT, "ref/build-backend.sh"), "--seed", "ghcr.io/example/backend:latest"],
+      stdout: "pipe",
+      stderr: "pipe",
+    });
+    expect(result.exitCode).toBe(2);
+    expect(result.stderr.toString()).toContain("--seed must be an immutable sha256 reference");
+  });
+
   test("identifies every boot-base input deterministically", () => {
     const temp = mkdtempSync(join(tmpdir(), "bench-backend-"));
     const root = join(temp, "ref");

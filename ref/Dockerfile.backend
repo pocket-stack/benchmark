@@ -26,11 +26,21 @@ RUN apt-get update \
       pkg-config python3 mtools u-boot-tools device-tree-compiler \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
-      | sh -s -- -y --profile minimal --default-toolchain "${RUST_TOOLCHAIN}" \
-    && rustup target add --toolchain "${RUST_TOOLCHAIN}" \
-      aarch64-unknown-linux-musl armv7-unknown-linux-musleabihf \
-    && cargo +"${RUST_TOOLCHAIN}" --version
+ENV RUSTUP_MAX_RETRIES=10
+RUN set -eu; \
+    for attempt in 1 2 3 4 5; do \
+      if curl --retry 5 --retry-all-errors --proto '=https' --tlsv1.2 -sSf \
+          https://sh.rustup.rs \
+          | sh -s -- -y --profile minimal --default-toolchain "${RUST_TOOLCHAIN}" \
+        && rustup target add --toolchain "${RUST_TOOLCHAIN}" \
+          aarch64-unknown-linux-musl armv7-unknown-linux-musleabihf; then \
+        break; \
+      fi; \
+      if [ "$attempt" = 5 ]; then exit 1; fi; \
+      rm -rf "${CARGO_HOME}" "${RUSTUP_HOME}"; \
+      sleep $((attempt * 5)); \
+    done; \
+    cargo +"${RUST_TOOLCHAIN}" --version
 
 # Avoid rustup's channel refresh when the image is run as the caller's uid.
 ENV RUSTUP_TOOLCHAIN="${RUST_TOOLCHAIN}"

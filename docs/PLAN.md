@@ -134,6 +134,10 @@ reference backend 是一个由 `ref/backend.lock.json` 锁定 digest 的 GHCR im
 checkout 的 shell 与 corpus 每次重新构建、注入。它不是服务，CI 也不依赖跨运行
 保存的 Actions artifact。
 
+backend 发布由独立 workflow 完成：以旧 lock 为不可变 seed 重建候选镜像，完整
+验证两架构后才提交新 lock。SO3 base/交叉工具链的 seed 替换仍使用 maintainer
+bootstrap；从空目录产生这些底层输入留在后续可复现流水线。
+
 确定性只比较非 idle 数据。idle 包含 boot、进程间工作和停止前空转。verify 是全帧 hash，
 单独报告但不作为 workload 成本。详见 ref/README.md 与 plugin/README.md。
 
@@ -160,7 +164,8 @@ checkout 的 shell 与 corpus 每次重新构建、注入。它不是服务，CI
 - virt32/virt64 在固定 QEMU 10.0.11 上完成 10 tape × 2；
 - pocketcount v2 的 run ownership、marker 和非 idle 确定性已验证；
 - compare、report、host baseline、GitHub Actions host job 与非门禁 reference
-  matrix 均可用。
+  matrix 均可用；
+- backend candidate 的 CI 构建、GHCR 发布、全量验证与 digest promotion 已固化。
 
 已发现的问题记录在 docs/FINDINGS.md。
 

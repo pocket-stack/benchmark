@@ -72,9 +72,39 @@ Actions artifact 只保存该次运行的观测输出，保留 30 天；后续 j
 并要求镜像中的 defconfig 与当前仓库完全一致。这样 tag 被移动、介质损坏或配置漂移
 都会在启动 QEMU 前失败。
 
-## 重建与发布 backend
+## CI 自动发布
 
-这是低频 maintainer 操作。它需要已有且验证过的 SO3 base 目录，以及
+`.github/workflows/publish-backend.yml` 在 backend 定义、plugin、manifest
+生成器或 bench defconfig 进入 main 时运行，也可手动 dispatch。它不使用
+Actions artifact 作为输入，而是：
+
+1. 按 digest 拉取当前 `backend.lock.json` 指向的镜像；
+2. 从中提取已验证的 SO3 base 与两套已安装 toolchain；
+3. 用当前提交从 Debian base 重新安装固定 QEMU/Rust 环境并编译 plugin；
+4. 将候选镜像推到 GHCR，并生成候选 lock；
+5. 用候选镜像重新编译两架构 shell，完整运行 `10 tape × 2`；
+6. 仅在全部通过后，由 `github-actions[bot]` 提交新 digest lock，并移动
+   `stable` tag。
+
+候选失败只会留下不受信任的 `candidate` tag，现有 lock 与 `stable` 不变。
+发布 job 需要该 package 的 Actions access 为 Write；日常 reference job 只需 Read。
+BuildKit layer 使用 GitHub Actions cache 加速，但 cache 不是 backend 输入，丢失后
+只会重新构建。
+
+seed 模式也可在本地复现 CI 构建：
+
+```sh
+seed="$(python3 -c 'import json; print(json.load(open("ref/backend.lock.json"))["image"])')"
+ref/build-backend.sh --seed "$seed" --tag pocketjs-bench-ref-backend:test
+```
+
+`--seed` 只接受 digest，并要求当前 defconfig 与 seed 完全相同。它不会把新
+defconfig 与旧 kernel 拼在一起。
+
+## 替换 SO3/toolchain seed
+
+只有 SO3 base、kernel、defconfig 或 musl toolchain 本身变化时，才需要低频
+maintainer bootstrap。该路径需要已有且验证过的 SO3 base 目录，以及
 `pocketjs-so3-toolchains` Docker volume 中两套已安装 toolchain；不会把
 `musl-cross-make` 源码装进最终镜像。
 
@@ -88,8 +118,9 @@ ref/build-backend.sh \
   --push --lock ref/backend.lock.json
 ```
 
-先用本地 tag 重跑两个 profile 的完整 `10 tape × 2`，确认后再 `--push --lock`。
-写 lock 需要 GHCR package 写权限；CI 日常运行只需要 `packages: read`。
+先用本地 tag 重跑两个 profile 的完整 `10 tape × 2`，确认后再
+`--push --lock`。完整的“从空目录构建 SO3 基础系统”仍是未来工作；日常 CI
+发布不依赖本地目录或 Docker volume。
 
 ## Profile
 
@@ -123,7 +154,7 @@ python3 ref/counts-summary.py counts-1.json --compare counts-2.json
 |---|---|
 | `Dockerfile.backend` | 定义唯一的 QEMU/SO3/toolchain backend |
 | `backend.lock.json` | 锁定 CI 使用的 registry digest、backend manifest 与两套 base hash |
-| `build-backend.sh` | 从已验证介质 bootstrap、发布镜像并更新 lock |
+| `build-backend.sh` | 从锁定 seed 自动重建，或从外部介质 bootstrap 新 seed |
 | `verify-backend.sh` | 拉取并验证不可变 backend |
 | `build-tools.sh` | 在 backend 中构建当前 SO3 shell 与 segmap |
 | `build-so3-kernel.sh` | bootstrap 时临时应用 bench defconfig 并重建 kernel |
@@ -132,3 +163,4 @@ python3 ref/counts-summary.py counts-1.json --compare counts-2.json
 | `run-qemu.sh` | 启动两个 stock-QEMU bench profile |
 | `counts-summary.py` | 查看 aggregate/frame/run 计数及比较两次运行 |
 | `so3/*_bench_defconfig` | 两架构参考机 kernel 配置 |
+| `.github/workflows/publish-backend.yml` | 构建、发布、全量验证并提升候选 digest |

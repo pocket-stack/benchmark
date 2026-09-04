@@ -55,6 +55,6 @@ docs/        PLAN、PROTOCOL、SHELL、FINDINGS
 | `guest-tape` 模式 | `pocket-bench-shell-guest` 上锁步匹配整条录制（op 码、每个参数字、帧边界），任何分歧退出 5；输入 tape 与 bench 协议两种录制都支持（ACTION 记录重放 `run()`） |
 | TCG plugin | 冒烟(EL1 裸机,aarch64 + arm32)与 SO3 全系统(EL0)均通过;marker 全命中、icount 下两跑非 idle 计数逐字节相同 |
 | SO3 参考机 | virt32 / virt64 bench profile 均在 stock QEMU 10.0.11 上跑完 10 条 neutral tape × 2；hash 与 host 一致，run × 段 × 阶段 × 帧的非 idle 计数两跑相同 |
-| compare / baselines / CI | compare.ts、baseline.ts 可用；host CI 与非门禁的 virt32/virt64 reference CI 均已接入 |
+| compare / baselines / CI | compare.ts、baseline.ts 可用；host、非门禁 reference，以及验证后自动提升 digest 的 backend publisher 均已接入 |
 
 benchmark 已经抓到的真问题（详见 `docs/FINDINGS.md`）：Solid renderer 自锚插入在纯反转时抛错且在设备后端静默乱序（已修）；**Vue Vapor 在 QuickJS 上 churn 每帧滞留 ≈6 MB**（600 帧 3.64 GB，设备必 OOM，JSC 上无感）；`gallery.octane` 的挂载栈峰值超过设备 256 KB 上限；virt32 原 64 KB 用户栈跑 `deep-32` 越界；以及一组跨框架语义差异记录。
