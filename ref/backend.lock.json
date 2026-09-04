@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "image": "ghcr.io/pocket-stack/benchmark-ref-backend@sha256:71497f91546743991e176c6edf3567030bd8a80449637f9284cd60ea90b1902a",
+  "image": "ghcr.io/pocket-stack/benchmark-ref-backend@sha256:2c45ecef2754f89e5ce241a84e78a1d353bb798aa97b896a304845a554bfcddc",
   "platform": "linux/amd64",
   "so3_commit": "e37b1c2a45429bdb5018fc55f748a27f189bc479",
   "qemu_version": "10.0.11",
